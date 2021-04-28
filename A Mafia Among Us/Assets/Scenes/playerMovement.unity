@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 1641914426}
   - component: {fileID: 1641914425}
   - component: {fileID: 1641914424}
+  - component: {fileID: 1641914427}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -176,7 +177,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 6.52
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -200,12 +201,46 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1641914423}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -1.09, y: -0.4, z: -20}
+  m_LocalScale: {x: 1.2234374, y: 1.0372032, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1641914427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1641914423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72ece51f2901e7445ab60da3685d6b5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShowDebugText: 0
+  m_ShowCameraFrustum: 1
+  m_IgnoreTimeScale: 0
+  m_WorldUpOverride: {fileID: 0}
+  m_UpdateMethod: 2
+  m_BlendUpdateMethod: 1
+  m_DefaultBlend:
+    m_Style: 1
+    m_Time: 2
+    m_CustomCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  m_CustomBlends: {fileID: 0}
+  m_CameraCutEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_CameraActivatedEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1706573616
 GameObject:
   m_ObjectHideFlags: 0
@@ -217,9 +252,9 @@ GameObject:
   - component: {fileID: 1706573621}
   - component: {fileID: 1706573620}
   - component: {fileID: 1706573619}
+  - component: {fileID: 1706573622}
   - component: {fileID: 1706573618}
   - component: {fileID: 1706573617}
-  - component: {fileID: 1706573622}
   m_Layer: 0
   m_Name: Moving1NB
   m_TagString: Player
@@ -227,36 +262,43 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!136 &1706573617
-CapsuleCollider:
+--- !u!70 &1706573617
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1706573616}
+  m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.8690572
-  m_Height: 15.48182
-  m_Direction: 1
-  m_Center: {x: -0.14328788, y: -0.28670385, z: 0}
---- !u!54 &1706573618
-Rigidbody:
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 18.9, y: 14.169999}
+  m_Direction: 0
+--- !u!50 &1706573618
+Rigidbody2D:
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1706573616}
-  serializedVersion: 2
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
   m_Mass: 1
-  m_Drag: 0
+  m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
   m_Interpolate: 0
-  m_Constraints: 120
+  m_SleepingMode: 1
   m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!95 &1706573619
 Animator:
   serializedVersion: 3
@@ -313,9 +355,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: 169936889
+  m_SortingLayer: 1
+  m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: c1e66520405ddb747b5b451ca598063b, type: 3}
   m_Color: {r: 0.8301887, g: 0.15977213, b: 0.6833506, a: 1}
   m_FlipX: 0
@@ -336,7 +378,7 @@ Transform:
   m_GameObject: {fileID: 1706573616}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.3891, y: 0.2681, z: 0}
-  m_LocalScale: {x: -0.14069751, y: 0.16041115, z: 1}
+  m_LocalScale: {x: -0.2625275, y: 0.29931116, z: 1.8659}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
@@ -401,4 +443,4 @@ MonoBehaviour:
       m_Groups: 
       m_Action: WASD
       m_Flags: 8
-  movementSpeed: 5
+  movementSpeed: 25
