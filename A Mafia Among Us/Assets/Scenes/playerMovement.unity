@@ -353,6 +353,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac8193c99c532984eac6ea9cf8f8055c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hasControl: 1
   WASD:
     m_Name: WASD
     m_Type: 0

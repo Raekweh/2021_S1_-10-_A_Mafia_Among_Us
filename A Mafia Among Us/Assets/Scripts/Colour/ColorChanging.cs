@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class ColorChanging : MonoBehaviour
 {
     [SerializeField] Color[] allColors;
+    
     public void SetColor(int colorIndex)
     {
         movement1.localPlayer.SetColor(allColors[colorIndex]);
