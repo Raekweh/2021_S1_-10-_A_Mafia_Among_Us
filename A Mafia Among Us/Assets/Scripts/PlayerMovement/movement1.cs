@@ -5,13 +5,20 @@ using UnityEngine.InputSystem;
 
 public class movement1 : MonoBehaviour
 {
+    [SerializeField] bool hasControl;
+    public static movement1 localPlayer;
 
     Rigidbody rigidbod;
+    Animator myAim;
     Transform myCharacter;
     [SerializeField] InputAction WASD;
     Vector2 movementInput;
     [SerializeField] float movementSpeed;
     private bool facingRight;
+
+    //Player Color
+    static Color myColor;
+    SpriteRenderer myAvatarSprite;
 
     private void OnEnable()
     {
@@ -25,11 +32,23 @@ public class movement1 : MonoBehaviour
 
     void Start()
     {
+        if(hasControl)
+        {
+            localPlayer = this;
+        }
+
         rigidbod = GetComponent<Rigidbody>();
         myCharacter = transform.GetChild(0);
 
         //Setting facing right to true
         facingRight = true;
+
+        myAvatarSprite = myAvatarSprite.GetComponent<SpriteRenderer>();
+        if(myColor == Color.clear)
+        {
+            myColor = Color.white;
+        }
+        myAvatarSprite.color = myColor;
     }
 
     // Update is called once per frame
@@ -43,12 +62,22 @@ public class movement1 : MonoBehaviour
         }
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         rigidbod.velocity = movementInput * movementSpeed;
 
         //Putting both vector x and y into the Flip
         Flip(movementInput);
+    }
+
+    //Changing the color
+    public void SetColor(Color newColor)
+    {
+        myColor = myColor;
+        if(myAvatarSprite != null)
+        {
+            myAvatarSprite.color = myColor;
+        }
     }
 
     //Flipping the character model
