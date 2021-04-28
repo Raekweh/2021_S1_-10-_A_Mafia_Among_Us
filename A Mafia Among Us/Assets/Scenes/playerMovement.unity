@@ -350,19 +350,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 1706573616}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac8193c99c532984eac6ea9cf8f8055c, type: 3}
+  m_Script: {fileID: 11500000, guid: 4141b8f3af56e4c498741558ffd68576, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hasControl: 0
   WASD:
     m_Name: WASD
     m_Type: 0
     m_ExpectedControlType: 
-    m_Id: edd77d0a-ac2f-4d29-9bd2-113c3ba1fd00
+    m_Id: a5101417-5d30-4e95-81ba-5c8490c79766
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings:
     - m_Name: 2D Vector
-      m_Id: 46c4aed9-3098-4f99-a0a9-206a2b4fe3f0
+      m_Id: e9516e61-c695-4475-839d-7b2f1fe7b64e
       m_Path: 2DVector
       m_Interactions: 
       m_Processors: 
@@ -370,7 +371,7 @@ MonoBehaviour:
       m_Action: WASD
       m_Flags: 4
     - m_Name: up
-      m_Id: e0116a0e-423c-4503-9c9f-0f056534d189
+      m_Id: 6ae47184-c874-4c5c-bfe4-079e6430b332
       m_Path: <Keyboard>/w
       m_Interactions: 
       m_Processors: 
@@ -378,15 +379,15 @@ MonoBehaviour:
       m_Action: WASD
       m_Flags: 8
     - m_Name: down
-      m_Id: 6e6f035e-18c5-4523-9ab9-1aeaf95bb5e4
-      m_Path: <Keyboard>/s
+      m_Id: 133373a4-1625-4e14-bd11-fe3f79f38fe4
+      m_Path: <Keyboard>/a
       m_Interactions: 
       m_Processors: 
       m_Groups: 
       m_Action: WASD
       m_Flags: 8
     - m_Name: left
-      m_Id: eba21c73-c0f6-46cb-ad68-63dccad5452b
+      m_Id: ff896a2d-3ce6-448d-8068-6a8a973435bf
       m_Path: <Keyboard>/a
       m_Interactions: 
       m_Processors: 
@@ -394,7 +395,7 @@ MonoBehaviour:
       m_Action: WASD
       m_Flags: 8
     - m_Name: right
-      m_Id: a9ff0569-f3c9-41b6-987b-45cce593d0ee
+      m_Id: cee99179-71c9-42f5-bbba-2f5fbe94f175
       m_Path: <Keyboard>/d
       m_Interactions: 
       m_Processors: 
