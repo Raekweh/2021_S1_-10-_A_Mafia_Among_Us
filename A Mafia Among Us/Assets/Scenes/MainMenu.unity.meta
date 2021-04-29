@@ -1,5 +1,18 @@
 fileFormatVersion: 2
+<<<<<<< Updated upstream
+<<<<<<<< Updated upstream:A Mafia Among Us/Assets/Scenes/MainMenu.unity.meta
 guid: 6c955c1b62b6f4eeb9d2a48565a1b497
+========
+guid: e499478b3208e46bcac7b34008ef9c74
+folderAsset: yes
+>>>>>>>> Stashed changes:A Mafia Among Us/Assets/Scripts/MainMenu.meta
+=======
+<<<<<<<< Updated upstream:A Mafia Among Us/Assets/Scenes/Character Death.unity.meta
+guid: ceb7b9e1326d54ef18a32d171f1855ef
+========
+guid: 6c955c1b62b6f4eeb9d2a48565a1b497
+>>>>>>>> Stashed changes:A Mafia Among Us/Assets/Scenes/MainMenu.unity.meta
+>>>>>>> Stashed changes
 DefaultImporter:
   externalObjects: {}
   userData: 
