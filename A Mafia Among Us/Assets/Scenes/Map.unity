@@ -178,7 +178,7 @@ Camera:
   field of view: 60
   orthographic: 1
   orthographic size: 28.287554
-  m_Depth: -1
+  m_Depth: -0.9
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -220,6 +220,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCharacter: {fileID: 1706573621}
+  cameraDistance: 50
 --- !u!1 &1193471590
 GameObject:
   m_ObjectHideFlags: 0
@@ -269,8 +270,9 @@ GameObject:
   - component: {fileID: 1193471618}
   - component: {fileID: 1193471603}
   - component: {fileID: 1193471631}
+  - component: {fileID: 1193471632}
   m_Layer: 0
-  m_Name: Final Map
+  m_Name: Map
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1080,9 +1082,9 @@ EdgeCollider2D:
   - {x: 13.622031, y: -2.9126217}
   - {x: 14.216321, y: -2.8163981}
   - {x: 14.9233885, y: -2.982366}
-  - {x: 15.582987, y: -3.3825548}
-  - {x: 15.771596, y: -4.312983}
-  - {x: 15.27762, y: -5.016323}
+  - {x: 15.51622, y: -3.4493213}
+  - {x: 15.660319, y: -4.312983}
+  - {x: 15.188599, y: -4.949558}
   - {x: 14.301616, y: -5.2453694}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
@@ -1106,10 +1108,10 @@ EdgeCollider2D:
   m_Points:
   - {x: 11.850745, y: -7.817461}
   - {x: 11.851122, y: -7.8687854}
-  - {x: 11.264514, y: -7.9214706}
-  - {x: 10.793737, y: -7.778793}
-  - {x: 10.316516, y: -7.507385}
-  - {x: 10.099027, y: -7.2016582}
+  - {x: 11.264514, y: -7.7656817}
+  - {x: 10.838248, y: -7.64526}
+  - {x: 10.472304, y: -7.4406185}
+  - {x: 10.210304, y: -7.1126356}
   - {x: 9.993481, y: -6.8829827}
   - {x: 9.991049, y: -6.5159383}
   - {x: 10.308209, y: -5.9211493}
@@ -1121,7 +1123,7 @@ EdgeCollider2D:
   - {x: 13.017442, y: -6.5333652}
   - {x: 13.0948515, y: -6.8473525}
   - {x: 12.818337, y: -7.4252415}
-  - {x: 12.030914, y: -7.8559694}
+  - {x: 11.986403, y: -7.7892027}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -1240,8 +1242,9 @@ EdgeCollider2D:
   - {x: 3.3961966, y: -4.4504604}
   - {x: 4.682178, y: -4.42586}
   - {x: 8.642527, y: -4.4576745}
-  - {x: 8.60995, y: -6.88983}
-  - {x: 11.223294, y: -9.521659}
+  - {x: 8.633349, y: -7.1706233}
+  - {x: 9.779764, y: -8.302408}
+  - {x: 11.078192, y: -9.5797}
   - {x: 13.640076, y: -9.530762}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
@@ -1301,12 +1304,17 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: 12.44849, y: 8.935151}
-  - {x: 12.387736, y: 11.241313}
-  - {x: 12.382124, y: 11.375284}
-  - {x: 14.926238, y: 11.366386}
-  - {x: 15.014798, y: 11.453646}
+  - {x: 14.988694, y: 18.60093}
+  - {x: 14.999978, y: 18.714256}
+  - {x: 15.034935, y: 18.743721}
+  - {x: 14.965031, y: 18.598064}
+  - {x: 14.982553, y: 18.654026}
+  - {x: 14.96165, y: 18.646694}
+  - {x: 14.952558, y: 18.540031}
+  - {x: 16.214893, y: 18.524176}
+  - {x: 14.9377365, y: 18.631718}
   - {x: 14.912477, y: 18.582228}
+  - {x: 15.638678, y: 18.575424}
   - {x: 20.038118, y: 18.53422}
   - {x: 20.14756, y: 21.551085}
   m_AdjacentStartPoint: {x: 0, y: 0}
@@ -1843,8 +1851,33 @@ EdgeCollider2D:
   m_EdgeRadius: 0
   m_Points:
   - {x: 8.975944, y: 16.601776}
-  - {x: 14.408603, y: 16.656498}
-  - {x: 14.364841, y: 16.737118}
+  - {x: 14.945542, y: 16.54911}
+  - {x: 14.955475, y: 13.971879}
+  m_AdjacentStartPoint: {x: 0, y: 0}
+  m_AdjacentEndPoint: {x: 0, y: 0}
+  m_UseAdjacentStartPoint: 0
+  m_UseAdjacentEndPoint: 0
+--- !u!68 &1193471632
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1193471590}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: 12.488224, y: 7.383007}
+  - {x: 12.486983, y: 9.287688}
+  - {x: 11.789231, y: 9.28551}
+  - {x: 11.856434, y: 7.2917323}
+  - {x: 12.482087, y: 7.2943625}
   m_AdjacentStartPoint: {x: 0, y: 0}
   m_AdjacentEndPoint: {x: 0, y: 0}
   m_UseAdjacentStartPoint: 0
@@ -1864,7 +1897,7 @@ GameObject:
   - component: {fileID: 1706573618}
   - component: {fileID: 1706573617}
   m_Layer: 0
-  m_Name: Moving1NB
+  m_Name: Character
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
