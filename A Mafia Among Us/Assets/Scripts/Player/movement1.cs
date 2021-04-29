@@ -12,6 +12,7 @@ public class movement1 : MonoBehaviour
     Vector2 movementInput;
     [SerializeField] float movementSpeed;
     private bool facingRight;
+    Animator myAnim;
 
     private void OnEnable()
     {
@@ -30,6 +31,8 @@ public class movement1 : MonoBehaviour
 
         //Setting facing right to true
         facingRight = true;
+
+        myAnim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -41,6 +44,8 @@ public class movement1 : MonoBehaviour
         {
             myCharacter.localScale = new Vector2(Mathf.Sign(movementInput.x), 1);
         }
+
+        myAnim.SetFloat("zSpeed", movementInput.magnitude);
     }
 
     void FixedUpdate()
