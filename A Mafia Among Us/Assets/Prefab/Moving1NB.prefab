@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2664691662506820736}
   - component: {fileID: 2664691662506820743}
   - component: {fileID: 1161421668889261828}
+  - component: {fileID: 4471042978686502169}
   m_Layer: 0
   m_Name: Moving1NB
   m_TagString: Player
@@ -29,13 +30,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2664691662506820737}
-  m_LocalRotation: {x: -0.043032546, y: -0.06756942, z: 0.0731179, w: 0.9941008}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.1, y: -1.1, z: -0.8}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -4.34, y: -8.108, z: 8.721}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2664691662506820741
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -76,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 695404414004684007, guid: bb14b0dddea5f174ea5165f12b8253af, type: 3}
+  m_Sprite: {fileID: -8365358743195807327, guid: bb14b0dddea5f174ea5165f12b8253af, type: 3}
   m_Color: {r: 0.8301887, g: 0.15977213, b: 0.6833506, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -143,7 +144,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2664691662506820737}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ac8193c99c532984eac6ea9cf8f8055c, type: 3}
   m_Name: 
@@ -230,3 +231,84 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 1.9058814
   m_Center: {x: -0.1203599, y: 0, z: 0}
+--- !u!114 &4471042978686502169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2664691662506820737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b824ded8e8609243a210e2decaa2e3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hasControl: 1
+  WASD:
+    m_Name: WASD
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 614f884f-9507-480f-96c0-2190d9e721d2
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 2D Vector
+      m_Id: d5b0e8c7-1cfa-49a2-b0a7-b82848d01a97
+      m_Path: 2DVector
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: WASD
+      m_Flags: 4
+    - m_Name: up
+      m_Id: f378444c-7b0d-4f6b-97b3-dda9f3fbb7b9
+      m_Path: <Keyboard>/w
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: WASD
+      m_Flags: 8
+    - m_Name: down
+      m_Id: 1a61f037-9895-4e8e-ac71-9a0495558c1a
+      m_Path: <Keyboard>/s
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: WASD
+      m_Flags: 8
+    - m_Name: left
+      m_Id: eab20693-3b08-412b-b539-e55916fa74b3
+      m_Path: <Keyboard>/a
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: WASD
+      m_Flags: 8
+    - m_Name: right
+      m_Id: 9bd04fb8-3ce6-41a8-88ee-d5608d2f64dd
+      m_Path: <Keyboard>/d
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: WASD
+      m_Flags: 8
+  movementSpeed: 25
+  isImposter: 1
+  KILL:
+    m_Name: KILL
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 251898dd-6930-4f15-acf9-62f515a9eb02
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: cc678a9a-bef7-437d-be29-b5b838384dce
+      m_Path: <Keyboard>/space
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: KILL
+      m_Flags: 0
+  myCollider: {fileID: 2664691662506820736}
+  bodyPrefab: {fileID: 1157752859018516248, guid: 9fcc73741ce7dfe41b160f285baf0250, type: 3}
