@@ -6,7 +6,9 @@ using UnityEngine.InputSystem;
 public class playerMovement : MonoBehaviour
 {
 
+
     Rigidbody2D rigidbod;
+
     Transform myCharacter;
     [SerializeField] InputAction WASD;
     Vector2 movementInput;
@@ -26,7 +28,11 @@ public class playerMovement : MonoBehaviour
 
     void Start()
     {
+
         rigidbod = GetComponent<Rigidbody2D>();
+
+        
+
         myCharacter = transform.GetChild(0);
 
         //Setting facing right to true
