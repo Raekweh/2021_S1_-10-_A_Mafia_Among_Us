@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 43312167}
   - component: {fileID: 43312166}
   - component: {fileID: 43312165}
-  - component: {fileID: 43312169}
+  - component: {fileID: 43312164}
   m_Layer: 5
   m_Name: CustomizeMenu
   m_TagString: Untagged
@@ -143,6 +143,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
+--- !u!114 &43312164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 43312163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53dc76906d12d4ca89a093cf0657ea52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allColors:
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
+  - {r: 0, g: 0, b: 0, a: 0}
 --- !u!114 &43312165
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -225,28 +247,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &43312169
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 43312163}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98f20bd2815ff4e63abeec437ad5246e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  allColors:
-  - {r: 0.91372555, g: 0.027450982, b: 0.027450982, a: 1}
-  - {r: 0.39607847, g: 0.39607847, b: 0.39607847, a: 1}
-  - {r: 0.62352943, g: 0.15686275, b: 0.15686275, a: 1}
-  - {r: 0.1254902, g: 0.9607844, b: 0.9607844, a: 1}
-  - {r: 0.9568628, g: 0, b: 0.9607844, a: 1}
-  - {r: 0.9607844, g: 0.8117648, b: 0, a: 1}
-  - {r: 0.1137255, g: 0.9607844, b: 0, a: 1}
-  - {r: 0.46274513, g: 0.3921569, b: 0.8980393, a: 1}
-  - {r: 0.9607844, g: 0.9607844, b: 0.9607844, a: 1}
 --- !u!1 &46193232
 GameObject:
   m_ObjectHideFlags: 0
@@ -451,7 +451,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 43312169}
+      - m_Target: {fileID: 43312164}
         m_TargetAssemblyTypeName: ColorChanging, Assembly-CSharp
         m_MethodName: SetColor
         m_Mode: 3
@@ -501,63 +501,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 221721948}
   m_CullTransparentMesh: 1
---- !u!1001 &222289229
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 8834591157968528329, guid: 24c0b99e5cd2a4a17be4bd16a539c79c, type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8834591157968528329, guid: 24c0b99e5cd2a4a17be4bd16a539c79c, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.3891
-      objectReference: {fileID: 0}
-    - target: {fileID: 8834591157968528329, guid: 24c0b99e5cd2a4a17be4bd16a539c79c, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.2681
-      objectReference: {fileID: 0}
-    - target: {fileID: 8834591157968528329, guid: 24c0b99e5cd2a4a17be4bd16a539c79c, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8834591157968528329, guid: 24c0b99e5cd2a4a17be4bd16a539c79c, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8834591157968528329, guid: 24c0b99e5cd2a4a17be4bd16a539c79c, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8834591157968528329, guid: 24c0b99e5cd2a4a17be4bd16a539c79c, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8834591157968528329, guid: 24c0b99e5cd2a4a17be4bd16a539c79c, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8834591157968528329, guid: 24c0b99e5cd2a4a17be4bd16a539c79c, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8834591157968528329, guid: 24c0b99e5cd2a4a17be4bd16a539c79c, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8834591157968528329, guid: 24c0b99e5cd2a4a17be4bd16a539c79c, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8834591157968528332, guid: 24c0b99e5cd2a4a17be4bd16a539c79c, type: 3}
-      propertyPath: m_Name
-      value: Moving1NB
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 24c0b99e5cd2a4a17be4bd16a539c79c, type: 3}
 --- !u!1 &246211246
 GameObject:
   m_ObjectHideFlags: 0
@@ -799,7 +742,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 43312169}
+      - m_Target: {fileID: 43312164}
         m_TargetAssemblyTypeName: ColorChanging, Assembly-CSharp
         m_MethodName: SetColor
         m_Mode: 3
@@ -932,7 +875,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 43312169}
+      - m_Target: {fileID: 43312164}
         m_TargetAssemblyTypeName: ColorChanging, Assembly-CSharp
         m_MethodName: SetColor
         m_Mode: 3
@@ -1065,7 +1008,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 43312169}
+      - m_Target: {fileID: 43312164}
         m_TargetAssemblyTypeName: ColorChanging, Assembly-CSharp
         m_MethodName: SetColor
         m_Mode: 3
@@ -1115,6 +1058,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 451909432}
   m_CullTransparentMesh: 1
+--- !u!1001 &514208834
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8834591157968528329, guid: 427113fa2cfca40ab80123afe6d9313b, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8834591157968528329, guid: 427113fa2cfca40ab80123afe6d9313b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.3891
+      objectReference: {fileID: 0}
+    - target: {fileID: 8834591157968528329, guid: 427113fa2cfca40ab80123afe6d9313b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.2681
+      objectReference: {fileID: 0}
+    - target: {fileID: 8834591157968528329, guid: 427113fa2cfca40ab80123afe6d9313b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8834591157968528329, guid: 427113fa2cfca40ab80123afe6d9313b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8834591157968528329, guid: 427113fa2cfca40ab80123afe6d9313b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8834591157968528329, guid: 427113fa2cfca40ab80123afe6d9313b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8834591157968528329, guid: 427113fa2cfca40ab80123afe6d9313b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8834591157968528329, guid: 427113fa2cfca40ab80123afe6d9313b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8834591157968528329, guid: 427113fa2cfca40ab80123afe6d9313b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8834591157968528329, guid: 427113fa2cfca40ab80123afe6d9313b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8834591157968528332, guid: 427113fa2cfca40ab80123afe6d9313b, type: 3}
+      propertyPath: m_Name
+      value: Moving1NB
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 427113fa2cfca40ab80123afe6d9313b, type: 3}
 --- !u!1 &530208221
 GameObject:
   m_ObjectHideFlags: 0
@@ -1128,6 +1128,7 @@ GameObject:
   - component: {fileID: 530208224}
   - component: {fileID: 530208223}
   - component: {fileID: 530208226}
+  - component: {fileID: 530208227}
   m_Layer: 0
   m_Name: Lobby
   m_TagString: Untagged
@@ -1228,6 +1229,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bfcf01bb704674aa7bb551a90e7784a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &530208227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 530208221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7c818150c9c7499e9bfc724207cafba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &569306915
@@ -1708,7 +1721,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 530208226}
+      - m_Target: {fileID: 530208227}
         m_TargetAssemblyTypeName: LobbyMenu, Assembly-CSharp
         m_MethodName: MainMenu
         m_Mode: 1
@@ -1999,7 +2012,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 43312169}
+      - m_Target: {fileID: 43312164}
         m_TargetAssemblyTypeName: ColorChanging, Assembly-CSharp
         m_MethodName: SetColor
         m_Mode: 3
@@ -2163,7 +2176,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e96e7ff51757549b0a8c718a70a2ecad, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6c009802a1abc4ee19d2dac20d183b2b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2349,7 +2362,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 530208226}
+      - m_Target: {fileID: 530208227}
         m_TargetAssemblyTypeName: LobbyMenu, Assembly-CSharp
         m_MethodName: GamePlay
         m_Mode: 1
@@ -2556,7 +2569,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 43312169}
+      - m_Target: {fileID: 43312164}
         m_TargetAssemblyTypeName: ColorChanging, Assembly-CSharp
         m_MethodName: SetColor
         m_Mode: 3
@@ -2720,7 +2733,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: d229c976d6fd94753b05d7b981c8a4a9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0ad6f6b81e3df4228be160720baae9dd, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2900,7 +2913,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 43312169}
+      - m_Target: {fileID: 43312164}
         m_TargetAssemblyTypeName: ColorChanging, Assembly-CSharp
         m_MethodName: SetColor
         m_Mode: 3
@@ -3112,7 +3125,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 43312169}
+      - m_Target: {fileID: 43312164}
         m_TargetAssemblyTypeName: ColorChanging, Assembly-CSharp
         m_MethodName: SetColor
         m_Mode: 3
@@ -3324,7 +3337,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 43312169}
+      - m_Target: {fileID: 43312164}
         m_TargetAssemblyTypeName: ColorChanging, Assembly-CSharp
         m_MethodName: SetColor
         m_Mode: 3

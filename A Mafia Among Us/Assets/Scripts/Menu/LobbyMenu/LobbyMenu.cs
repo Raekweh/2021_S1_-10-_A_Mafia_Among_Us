@@ -13,6 +13,6 @@ public class LobbyMenu : MonoBehaviour
 
     public void GamePlay()
     {
-        //Here you will change scenes to the game
+        SceneManager.LoadScene("Map");
     }
 }

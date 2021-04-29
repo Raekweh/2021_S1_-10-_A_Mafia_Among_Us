@@ -8,24 +8,15 @@ public class movement1 : MonoBehaviour
     [SerializeField] bool hasControl;
     public static movement1 localPlayer;
 
-<<<<<<< HEAD:A Mafia Among Us/Assets/Scripts/PlayerMovement/movement1.cs
-    Rigidbody rigidbod;
-    Animator myAim;
-=======
     Rigidbody2D rigidbod;
->>>>>>> Developement:A Mafia Among Us/Assets/Scripts/Player/movement1.cs
     Transform myCharacter;
     [SerializeField] InputAction WASD;
     Vector2 movementInput;
     [SerializeField] float movementSpeed;
     private bool facingRight;
 
-<<<<<<< HEAD:A Mafia Among Us/Assets/Scripts/PlayerMovement/movement1.cs
-    //Player Color
     static Color myColor;
     SpriteRenderer myAvatarSprite;
-=======
->>>>>>> Developement:A Mafia Among Us/Assets/Scripts/Player/movement1.cs
 
     private void OnEnable()
     {
@@ -39,16 +30,7 @@ public class movement1 : MonoBehaviour
 
     void Start()
     {
-<<<<<<< HEAD:A Mafia Among Us/Assets/Scripts/PlayerMovement/movement1.cs
-        if(hasControl)
-        {
-            localPlayer = this;
-        }
-
-        rigidbod = GetComponent<Rigidbody>();
-=======
         rigidbod = GetComponent<Rigidbody2D>();
->>>>>>> Developement:A Mafia Among Us/Assets/Scripts/Player/movement1.cs
         myCharacter = transform.GetChild(0);
 
         //Setting facing right to true

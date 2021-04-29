@@ -8,7 +8,7 @@ public class MainMenu : MonoBehaviour
 {
     public void LocalLobby()
     {
-        SceneManager.LoadScene("startLoby");
+        SceneManager.LoadScene("LocalLoby");
     }
 
     // public void MultiplayerLobby()
