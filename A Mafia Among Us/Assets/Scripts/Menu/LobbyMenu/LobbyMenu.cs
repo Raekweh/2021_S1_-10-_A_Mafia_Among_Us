@@ -1,18 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LobbyMenu : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    //Method to change scenes to back to Main Menu
+    public void MainMenu()
     {
-        
+        SceneManager.LoadScene("MainMenu");
     }
 
-    // Update is called once per frame
-    void Update()
+    public void GamePlay()
     {
-        
+        //Here you will change scenes to the game
     }
 }

@@ -1,20 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class MainMenu : MonoBehaviour
 {
-    //Method to change scenes to Local play
-    public void LocalPLay()
+    public void LocalLobby()
     {
-
+        SceneManager.LoadScene("startLoby");
     }
 
-    //Method to change the scenes to Online Play
-    public void OnlinePlay()
+    public void Quit()
     {
-
+        Application.Quit();
     }
-
-    //Probably add a method for how to play or you can just do an empty object in MainMenu
 }
