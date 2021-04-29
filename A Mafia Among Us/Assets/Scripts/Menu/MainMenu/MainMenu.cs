@@ -11,6 +11,18 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene("startLoby");
     }
 
+    // public void MultiplayerLobby()
+    // {
+
+    // }
+
+    
+    // public void HowToPlay()
+    // {
+
+    // }
+
+    //Quits the game
     public void Quit()
     {
         Application.Quit();
