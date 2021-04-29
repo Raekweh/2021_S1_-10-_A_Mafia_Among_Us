@@ -6,12 +6,15 @@ using UnityEngine.InputSystem;
 public class movement1 : MonoBehaviour
 {
 
-    Rigidbody rigidbod;
+
+    Rigidbody2D rigidbod;
+
     Transform myCharacter;
     [SerializeField] InputAction WASD;
     Vector2 movementInput;
     [SerializeField] float movementSpeed;
     private bool facingRight;
+
 
     private void OnEnable()
     {
@@ -25,7 +28,11 @@ public class movement1 : MonoBehaviour
 
     void Start()
     {
-        rigidbod = GetComponent<Rigidbody>();
+
+        rigidbod = GetComponent<Rigidbody2D>();
+
+        
+
         myCharacter = transform.GetChild(0);
 
         //Setting facing right to true
