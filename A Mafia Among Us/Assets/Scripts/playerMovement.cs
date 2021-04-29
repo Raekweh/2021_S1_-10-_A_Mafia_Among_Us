@@ -6,9 +6,13 @@ using UnityEngine.InputSystem;
 public class playerMovement : MonoBehaviour
 {
 
+    [SerializeField] bool hasControl;
+    public static playerMovement localPlayer;
+
+    static Color myColour;
+    SpriteRenderer myAvatarSprite;
 
     Rigidbody2D rigidbod;
-
     Transform myCharacter;
     [SerializeField] InputAction WASD;
     Vector2 movementInput;
@@ -28,12 +32,19 @@ public class playerMovement : MonoBehaviour
 
     void Start()
     {
+        if(hasControl){
+            localPlayer = this;
+        }
 
         rigidbod = GetComponent<Rigidbody2D>();
-
-        
-
         myCharacter = transform.GetChild(0);
+        myAvatarSprite = myCharacter.GetComponent<SpriteRenderer>();
+
+        if(myColour == Color.clear)
+        {
+            myColour = Color.white;
+        }
+        myAvatarSprite.color = myColour;
 
         //Setting facing right to true
         facingRight = true;
@@ -73,6 +84,13 @@ public class playerMovement : MonoBehaviour
 
             //Update the local scale
             transform.localScale = theScale;
+        }
+    }
+
+    public void setColour(Color newColour){
+        myColour = newColour;
+        if(myAvatarSprite != null){
+            myAvatarSprite.color = myColour;
         }
     }
 }
