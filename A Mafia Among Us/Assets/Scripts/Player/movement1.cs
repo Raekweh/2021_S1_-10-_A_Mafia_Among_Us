@@ -9,8 +9,8 @@ public class movement1 : MonoBehaviour
     public static movement1 localPlayer;
 
     Rigidbody rigidbod;
-    Animator myAnim;
     Transform myCharacter;
+    Animator myAnim;
     [SerializeField] InputAction WASD;
     Vector2 movementInput;
     [SerializeField] float movementSpeed;
@@ -23,12 +23,16 @@ public class movement1 : MonoBehaviour
     //Player Role
     [SerializeField] bool isImposter;
     [SerializeField] InputAction KILL;
-   // float killInput;
+    float killInput;
 
-    movement1 target;
+    List<movement1> targets;
+
+    //movement1 target;
     [SerializeField] Collider myCollider;
 
     bool isDead;
+
+    [SerializeField] GameObject bodyPrefab;
 
     private void Awake()
     {
@@ -58,8 +62,11 @@ public class movement1 : MonoBehaviour
             localPlayer = this;
         }
 
+        targets = new List<movement1>();
+
         rigidbod = GetComponent<Rigidbody>();
         myCharacter = transform.GetChild(0);
+        myAnim = GetComponent<Animator>();
 
         //Setting facing right to true
         facingRight = true;
@@ -73,7 +80,7 @@ public class movement1 : MonoBehaviour
             return;
         myAvatarSprite.color = myColor;
 
-        myAnim = GetComponent<Animator>();
+
     }
 
     // Update is called once per frame
@@ -89,7 +96,15 @@ public class movement1 : MonoBehaviour
             myCharacter.localScale = new Vector2(Mathf.Sign(movementInput.x), 1);
         }
 
-        myAnim.SetFloat("zSpeed", movementInput.magnitude);
+        /*
+         if(movementInput.x !=0 || movementInput.y != 0)
+         {
+             myAnim.SetBool("isMoving", true); 
+
+         }
+        */
+
+        myAnim.SetFloat("speed", movementInput.magnitude);
     }
 
     void FixedUpdate()
@@ -103,7 +118,7 @@ public class movement1 : MonoBehaviour
     //Changing the color
     public void SetColor(Color newColor)
     {
-        myColor = myColor;
+        //myColor = myColor;
         if (myAvatarSprite != null)
         {
             myAvatarSprite.color = myColor;
@@ -115,7 +130,7 @@ public class movement1 : MonoBehaviour
         isImposter = newRole;
     }
 
-    public void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
@@ -126,27 +141,40 @@ public class movement1 : MonoBehaviour
                     return;
                 else
                 {
-                    target = tempTarget;
-                    Debug.Log(target.name);
+                    targets.Add(tempTarget);
+                   
                 }
             }
         }
 
     }
 
-    void KillTarget(InputAction.CallbackContext context)
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Player")
+        {
+            movement1 tempTarget = other.GetComponent<movement1>();
+            if (targets.Contains(tempTarget))
+            {
+                targets.Remove(tempTarget);
+            }
+        }
+    }
+
+
+        void KillTarget(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Performed)
         {
-            if (target == null)
+            if (targets.Count==0)
                 return;
             else
             {
-                if (target.isDead)
+                if (targets[targets.Count-1].isDead)
                     return;
-                transform.position = target.transform.position;
-                target.Die();
-                target = null;
+                transform.position = targets[targets.Count-1].transform.position;
+                targets[targets.Count-1].Die();
+                targets.RemoveAt(targets.Count - 1);
             }
         }
     }
@@ -156,6 +184,9 @@ public class movement1 : MonoBehaviour
         isDead = true;
         myAnim.SetBool("isDead", isDead);
         myCollider.enabled = false;
+
+        playerBody tempBody =Instantiate(bodyPrefab, transform.position, transform.rotation).GetComponent<playerBody>();
+        tempBody.SetColor(myAvatarSprite.color);
     }
 
 

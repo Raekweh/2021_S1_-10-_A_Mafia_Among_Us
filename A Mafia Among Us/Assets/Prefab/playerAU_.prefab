@@ -149,6 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac8193c99c532984eac6ea9cf8f8055c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hasControl: 0
   WASD:
     m_Name: WASD
     m_Type: 0
@@ -198,6 +199,16 @@ MonoBehaviour:
       m_Action: WASD
       m_Flags: 8
   movementSpeed: 5
+  isImposter: 0
+  KILL:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: f9b82fd7-6a97-4283-aab9-43e19a8822dd
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+  myCollider: {fileID: 0}
 --- !u!114 &1102443325204476090
 MonoBehaviour:
   m_ObjectHideFlags: 0
