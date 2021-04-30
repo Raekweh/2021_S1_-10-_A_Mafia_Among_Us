@@ -8,12 +8,12 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Scenes/MainMenu.unity
-    guid: 6b6bd1d8b09644c2d896d911a517286d
-  - enabled: 1
-    path: Assets/Scenes/LocalLoby.unity
-    guid: 46d69e0b8fa99f84e9141543434da709
+    path: Assets/Scenes/ColourCustomiser.unity
+    guid: 9c179a4a9c107ec49a609511c4bec7d3
   - enabled: 1
     path: Assets/Scenes/Map.unity
     guid: 3a45bc21836934b4493a1b512e673416
