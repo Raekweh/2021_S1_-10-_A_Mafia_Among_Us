@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1039105721331992046}
   - component: {fileID: 730528614}
   - component: {fileID: 1051934979768033334}
+  - component: {fileID: 4295416405866312599}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -29,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 1744147298936148161}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 27.147408, y: -12.078722, z: -18.940477}
-  m_LocalScale: {x: 7, y: 7, z: 7}
+  m_LocalScale: {x: 4, y: 4, z: 4}
   m_Children:
   - {fileID: 3356922216226398321}
   m_Father: {fileID: 0}
@@ -125,7 +126,27 @@ MonoBehaviour:
       m_Groups: 
       m_Action: WASD
       m_Flags: 8
-  movementSpeed: 10
+  movementSpeed: 15
+  hasControl: 1
+  isImposter: 1
+  KILL:
+    m_Name: KILL
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 6872f93b-4e12-43a9-be10-f507d98e864c
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 893f00d8-ebb3-4f01-bbb9-2e2dc6a9bd0f
+      m_Path: <Keyboard>/space
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: KILL
+      m_Flags: 0
+  myCollider: {fileID: 1039105721331992046}
+  bodyPrefab: {fileID: 2301450699183353448, guid: a4b9e0a7381c5334b9b0b30f1fc0643d, type: 3}
 --- !u!95 &1051934979768033334
 Animator:
   serializedVersion: 3
@@ -145,6 +166,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!135 &4295416405866312599
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1744147298936148161}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4110917440280207321
 GameObject:
   m_ObjectHideFlags: 0
