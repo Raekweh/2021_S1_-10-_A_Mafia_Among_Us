@@ -31,24 +31,29 @@ public class AU_PlayerController : MonoBehaviour
     List<Transform> bodiesFound;
     [SerializeField] InputAction REPORT;
     [SerializeField] LayerMask ignoreForBody;
+
     private void Awake()
     {
         KILL.performed += KillTarget;
         REPORT.performed += ReportBody;
     }
 
+    //This method enables the movement input, killing and reporting functionality
     private void OnEnable()
     {
         WASD.Enable();
         KILL.Enable();
         REPORT.Enable();
     }
+
+    //This method disables the movement input, killing and reporting functionality
     private void OnDisable()
     {
         WASD.Disable();
         KILL.Disable();
         REPORT.Disable();
     }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -71,6 +76,7 @@ public class AU_PlayerController : MonoBehaviour
         allBodies = new List<Transform>();
         bodiesFound = new List<Transform>();
     }
+
     // Update is called once per frame
     void Update()
     {
@@ -87,10 +93,14 @@ public class AU_PlayerController : MonoBehaviour
             BodySearch();
         }
     }
+
+    //updates the velocity of the rigidbody aka character
     private void FixedUpdate()
     {
         myRB.velocity = movementInput * movementSpeed;
     }
+
+    //sets the colour of the avatar sprite to newColor
     public void SetColor(Color newColor)
     {
         myColor = newColor;
@@ -99,10 +109,14 @@ public class AU_PlayerController : MonoBehaviour
             myAvatarSprite.color = myColor;
         }
     }
+
+    //sets the players role to imposter or not imposter
     public void SetRole(bool newRole)
     {
         isImposter = newRole;
     }
+
+    //this method adds potential murder targers to a target array when they enter the range
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
@@ -121,6 +135,7 @@ public class AU_PlayerController : MonoBehaviour
         }
     }
 
+    //this method rtemoves the potential murder targers from the target array when they leave the range
     private void OnTriggerExit(Collider other)
     {
         if (other.tag == "Player")
@@ -132,6 +147,8 @@ public class AU_PlayerController : MonoBehaviour
             }
         }
     }
+
+    //This method will kill the last player to enter the imposters kill radius
     private void KillTarget(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Performed)
@@ -149,6 +166,8 @@ public class AU_PlayerController : MonoBehaviour
             }
         }
     }
+
+    //this method will cause the plauyer to die leaving a dead sprite at the location of death
     public void Die()
     {
         AU_Body tempBody = Instantiate(bodyPrefab, transform.position, transform.rotation).GetComponent<AU_Body>();
@@ -158,6 +177,8 @@ public class AU_PlayerController : MonoBehaviour
         gameObject.layer = 9;
         myCollider.enabled = false;
     }
+
+    //This method searches for bodies by calculating rays between the player and a body
     void BodySearch()
     {
         foreach (Transform body in allBodies)
@@ -170,8 +191,6 @@ public class AU_PlayerController : MonoBehaviour
 
                 if (hit.transform == body)
                 {
-                    //Debug.Log(hit.transform.name);
-                    //Debug.Log(bodiesFound.Count);
                     if (bodiesFound.Contains(body.transform))
                         return;
                     bodiesFound.Add(body.transform);
@@ -184,6 +203,8 @@ public class AU_PlayerController : MonoBehaviour
             }
         }
     }
+
+    //this method is used to report the body when they are in the range of a player
     private void ReportBody(InputAction.CallbackContext obj)
     {
         if (bodiesFound == null)
