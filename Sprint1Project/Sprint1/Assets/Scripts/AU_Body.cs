@@ -15,14 +15,15 @@ public class AU_Body : MonoBehaviour
     private void OnEnable()
     {
         if (AU_PlayerController.allBodies != null)
-@ -15,6 + 19,8 @@ public class AU_Body : MonoBehaviour
- 
-             AU_PlayerController.allBodies.Add(transform);
+        {
+            AU_PlayerController.allBodies.Add(transform);
         }
     }
 
     //This method removes the dead sprite of the dead character and notes to the debug log that the body has been reported
     public void Report()
-{
-    Debug.Log("Reported");
-@ @@
+    {
+        Debug.Log("Reported");
+        Destroy(gameObject);
+    }
+}

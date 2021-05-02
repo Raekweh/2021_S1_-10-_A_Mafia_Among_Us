@@ -17,3 +17,5 @@ public class AU_CharacterCustomizer : MonoBehaviour
     {
         SceneManager.LoadScene(sceneIndex);
     }
+
+}
