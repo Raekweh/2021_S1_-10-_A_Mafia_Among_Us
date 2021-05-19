@@ -346,6 +346,41 @@ MonoBehaviour:
   ignoreForBody:
     serializedVersion: 2
     m_Bits: 512
+  MOUSE:
+    m_Name: MOUSE
+    m_Type: 0
+    m_ExpectedControlType: Vector2
+    m_Id: 6dadb63d-0886-45a6-978f-702c3cc0ba4d
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 635a29f9-88d5-48c2-a32d-28527778c4a0
+      m_Path: <Mouse>/position
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: MOUSE
+      m_Flags: 0
+  INTERACTION:
+    m_Name: INTERACTION
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: f714d549-8aab-42c9-8069-32e7a340cc9f
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 16f9bf15-d501-4efb-b4ad-298ac252a79d
+      m_Path: <Keyboard>/u
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: INTERACTION
+      m_Flags: 0
+  interactionLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!54 &6188980616498085204
 Rigidbody:
   m_ObjectHideFlags: 0

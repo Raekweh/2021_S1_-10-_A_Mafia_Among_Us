@@ -247,7 +247,7 @@ public class AU_PlayerController : MonoBehaviour
                         return;
                     }
                     AU_Interactable temp = hit.transform.GetComponent<AU_Interactable>();
-                    temp.PlayerMiniGame();
+                    // temp.PlayerMiniGame();
                 }
             }
         }

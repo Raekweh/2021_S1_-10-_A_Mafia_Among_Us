@@ -5,12 +5,12 @@ using UnityEngine;
 public class AU_Interactable : MonoBehaviour
 {
     [SerializeField] GameObject miniGame;
-    GameObject highlight;
+    GameObject Highlight;
 
     private void OnEnable()
     {
         //Initialize our highlight variable
-        highlight = transform.GetChild(0).gameObject;
+        Highlight = transform.GetChild(0).gameObject;
     }
 
     //If the player collides with another object
@@ -18,8 +18,7 @@ public class AU_Interactable : MonoBehaviour
     {
         if(other.tag == "Player")
         {
-
-            highlight.SetActive(true);
+            Highlight.SetActive(true);
         }
     }
 
@@ -28,7 +27,7 @@ public class AU_Interactable : MonoBehaviour
     {
         if(other.tag == "Player")
         {
-            highlight.SetActive(false);
+            Highlight.SetActive(false);
         }
     }
 
