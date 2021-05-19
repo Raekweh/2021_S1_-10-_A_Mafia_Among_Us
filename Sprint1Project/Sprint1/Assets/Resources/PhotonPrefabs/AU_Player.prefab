@@ -202,6 +202,7 @@ GameObject:
   - component: {fileID: 6188980616498085204}
   - component: {fileID: 6188980616498085207}
   - component: {fileID: 6188980616498085210}
+  - component: {fileID: 5389540656706692465}
   m_Layer: 0
   m_Name: AU_Player
   m_TagString: Player
@@ -346,6 +347,7 @@ MonoBehaviour:
   ignoreForBody:
     serializedVersion: 2
     m_Bits: 512
+  lightMask: {fileID: 472144661}
 --- !u!54 &6188980616498085204
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -389,6 +391,28 @@ CapsuleCollider:
   m_Height: 0.918609
   m_Direction: 1
   m_Center: {x: 0.040695548, y: -0.04069549, z: 0}
+--- !u!114 &5389540656706692465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6188980616498085200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &6188980617839329720
 GameObject:
   m_ObjectHideFlags: 0

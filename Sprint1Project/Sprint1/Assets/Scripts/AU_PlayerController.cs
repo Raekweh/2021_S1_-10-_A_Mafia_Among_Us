@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -32,6 +33,12 @@ public class AU_PlayerController : MonoBehaviour
     [SerializeField] InputAction REPORT;
     [SerializeField] LayerMask ignoreForBody;
 
+    Camera myCamera;
+
+    //Networking
+    PhotonView myPV;
+    [SerializeField] GameObject lightMask;
+
     private void Awake()
     {
         KILL.performed += KillTarget;
@@ -57,18 +64,24 @@ public class AU_PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (hasControl)
+
+        myPV = GetComponent<PhotonView>();
+
+        if (myPV.IsMine)
         {
             localPlayer = this;
         }
-
+        myCamera = transform.GetChild(1).GetComponent<Camera>();
         targets = new List<AU_PlayerController>();
         myRB = GetComponent<Rigidbody>();
         myAnim = GetComponent<Animator>();
         myAvatar = transform.GetChild(0);
         myAvatarSprite = myAvatar.GetComponent<SpriteRenderer>();
-        if (!hasControl)
+        if (!myPV.IsMine)
+            myCamera.gameObject.SetActive(false);
+            lightMask.SetActive(false);
             return;
+
         if (myColor == Color.clear)
             myColor = Color.white;
         myAvatarSprite.color = myColor;
