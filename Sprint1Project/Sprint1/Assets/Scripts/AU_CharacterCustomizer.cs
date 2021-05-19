@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,7 @@ public class AU_CharacterCustomizer : MonoBehaviour
     //This method is used to set the player's colour which the user is controlling
     public void SetColor(int colorIndex)
     {
+        // if(AU_PlayerController.localPlayer!=null)
         AU_PlayerController.localPlayer.SetColor(allColors[colorIndex]);
     }
 
