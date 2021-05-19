@@ -32,10 +32,18 @@ public class AU_PlayerController : MonoBehaviour
     [SerializeField] InputAction REPORT;
     [SerializeField] LayerMask ignoreForBody;
 
+    //Interaction
+    [SerializeField] InputAction MOUSE;
+    Vector2 mousePositionInput;
+    Camera myCamera;
+    [SerializeField] InputAction INTERACTION;
+    [SerializeField] LayerMask interactionLayer;
+
     private void Awake()
     {
         KILL.performed += KillTarget;
         REPORT.performed += ReportBody;
+        INTERACTION.performed += Interact;
     }
 
     //This method enables the movement input, killing and reporting functionality
@@ -44,6 +52,8 @@ public class AU_PlayerController : MonoBehaviour
         WASD.Enable();
         KILL.Enable();
         REPORT.Enable();
+        MOUSE.Enable();
+        INTERACTION.Enable();
     }
 
     //This method disables the movement input, killing and reporting functionality
@@ -52,6 +62,8 @@ public class AU_PlayerController : MonoBehaviour
         WASD.Disable();
         KILL.Disable();
         REPORT.Disable();
+        MOUSE.Disable();
+        INTERACTION.Disable();
     }
 
     // Start is called before the first frame update
@@ -92,6 +104,8 @@ public class AU_PlayerController : MonoBehaviour
         {
             BodySearch();
         }
+        //Gets the mouse position input by reading vector2
+        mousePositionInput = MOUSE.ReadValue<Vector2>();
     }
 
     //updates the velocity of the rigidbody aka character
@@ -215,5 +229,27 @@ public class AU_PlayerController : MonoBehaviour
         allBodies.Remove(tempBody);
         bodiesFound.Remove(tempBody);
         tempBody.GetComponent<AU_Body>().Report();
+    }
+
+    //this method is used to interact with task.
+    void Interact(InputAction.CallbackContext context)
+    {
+        if(context.phase == InputActionPhase.Performed)
+        {
+            RaycastHit hit;
+            Ray ray = myCamera.ScreenPointToRay(mousePositionInput);
+            if(Physics.Raycast(ray,out hit, interactionLayer))
+            {
+                if(hit.transform.tag == "Interactable")
+                {
+                    if(hit.transform.GetChild(0).gameObject.activeInHierarchy)
+                    {
+                        return;
+                    }
+                    AU_Interactable temp = hit.transform.GetComponent<AU_Interactable>();
+                    temp.PlayerMiniGame();
+                }
+            }
+        }
     }
 }
