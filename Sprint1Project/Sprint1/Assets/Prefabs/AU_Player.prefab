@@ -54,7 +54,7 @@ MonoBehaviour:
   m_UseNormalMap: 0
   m_LightOrder: 0
   m_AlphaBlendOnOverlap: 0
-  m_ShadowIntensity: 1
+  m_ShadowIntensity: 0.966
   m_ShadowVolumeIntensity: 0
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
@@ -365,20 +365,20 @@ MonoBehaviour:
   INTERACTION:
     m_Name: INTERACTION
     m_Type: 0
-    m_ExpectedControlType: 
+    m_ExpectedControlType: Vector2
     m_Id: f714d549-8aab-42c9-8069-32e7a340cc9f
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings:
     - m_Name: 
       m_Id: 16f9bf15-d501-4efb-b4ad-298ac252a79d
-      m_Path: <Keyboard>/u
+      m_Path: <Mouse>/leftButton
       m_Interactions: 
       m_Processors: 
       m_Groups: 
       m_Action: INTERACTION
       m_Flags: 0
-  interactionLayer:
+  interactLayer:
     serializedVersion: 2
     m_Bits: 64
 --- !u!54 &6188980616498085204
@@ -579,7 +579,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 3402189841344244264, guid: 71cdaa250f46a6e4c9f0de11f2352e72, type: 3}
-  m_Color: {r: 1, g: 0.000000093380606, b: 0, a: 1}
+  m_Color: {r: 1, g: 0.02818857, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

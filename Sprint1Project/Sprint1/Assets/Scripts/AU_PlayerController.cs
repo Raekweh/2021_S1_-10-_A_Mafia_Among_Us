@@ -37,7 +37,7 @@ public class AU_PlayerController : MonoBehaviour
     Vector2 mousePositionInput;
     Camera myCamera;
     [SerializeField] InputAction INTERACTION;
-    [SerializeField] LayerMask interactionLayer;
+    [SerializeField] LayerMask interactLayer;
 
     private void Awake()
     {
@@ -73,7 +73,7 @@ public class AU_PlayerController : MonoBehaviour
         {
             localPlayer = this;
         }
-
+        myCamera = transform.GetChild(2).GetComponent<Camera>();
         targets = new List<AU_PlayerController>();
         myRB = GetComponent<Rigidbody>();
         myAnim = GetComponent<Animator>();
@@ -234,22 +234,21 @@ public class AU_PlayerController : MonoBehaviour
     //this method is used to interact with task.
     void Interact(InputAction.CallbackContext context)
     {
-        if(context.phase == InputActionPhase.Performed)
+        if (context.phase == InputActionPhase.Performed)
         {
+            //Debug.Log("Here");
             RaycastHit hit;
             Ray ray = myCamera.ScreenPointToRay(mousePositionInput);
-            if(Physics.Raycast(ray,out hit, interactionLayer))
+            if (Physics.Raycast(ray, out hit,interactLayer))
             {
-                if(hit.transform.tag == "Interactable")
+                if (hit.transform.tag == "Interactable")
                 {
-                    if(hit.transform.GetChild(0).gameObject.activeInHierarchy)
-                    {
+                    if (!hit.transform.GetChild(0).gameObject.activeInHierarchy)
                         return;
-                    }
                     AU_Interactable temp = hit.transform.GetComponent<AU_Interactable>();
-                    // temp.PlayerMiniGame();
+                    temp.PlayMiniGame();
                 }
             }
-        }
+        } 
     }
 }
