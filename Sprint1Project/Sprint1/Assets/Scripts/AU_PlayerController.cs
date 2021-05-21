@@ -27,6 +27,7 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
 
     //Role
     [SerializeField] bool isImposter;
+    bool impasta;
     [SerializeField] InputAction KILL;
     float killInput;
     List<AU_PlayerController> targets;
@@ -103,6 +104,8 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
     // Update is called once per frame
     void Update()
     {
+        // Debug.Log("IMPASTA = "+impasta);
+        // Debug.Log("Is imposter = "+isImposter);
         myAvatar.localScale = new Vector2(direction, 1);
 
         if (!myPV.IsMine)
@@ -150,6 +153,7 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
     public void SetRole(bool newRole)
     {
         isImposter = newRole;
+        Debug.Log("Is Imposter being reset");
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -275,10 +279,24 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
         if (stream.IsWriting)
         {
             stream.SendNext(direction);
+            stream.SendNext(isImposter);
         }
         else
         {
-            direction = (float)stream.ReceiveNext();
+            this.direction = (float)stream.ReceiveNext();
+            this.isImposter = (bool)stream.ReceiveNext();
+        }
+    }
+
+    public void BecomeImposter(int ImposterNumber)
+    {
+        if(PhotonNetwork.LocalPlayer == PhotonNetwork.PlayerList[ImposterNumber])
+        {
+            isImposter = true;
+            impasta = true;
+            Debug.Log("Is imposter ="+isImposter);
+            Debug.Log("-----------Impasta ="+impasta);
+
         }
     }
     

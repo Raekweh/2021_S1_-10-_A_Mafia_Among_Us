@@ -206,7 +206,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!114 &519420030
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -715,29 +715,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1209575184547621716
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1209575184547621717}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed459fb73087b42e7a0accc55d45cd86, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnPoints:
-  - {fileID: 1209575184721150569}
-  - {fileID: 1209575184966088858}
-  - {fileID: 1209575184499127782}
-  - {fileID: 1209575184370641275}
-  - {fileID: 1209575184068446360}
-  - {fileID: 1209575184867139094}
-  - {fileID: 1209575184381709289}
-  - {fileID: 1209575185241232560}
-  - {fileID: 1209575184519966175}
-  - {fileID: 1209575183873816585}
 --- !u!1 &1209575184547621717
 GameObject:
   m_ObjectHideFlags: 0
@@ -747,7 +724,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1209575184547621715}
-  - component: {fileID: 1209575184547621716}
+  - component: {fileID: 1209575184547621720}
   - component: {fileID: 1209575184547621718}
   - component: {fileID: 1209575184547621719}
   m_Layer: 0
@@ -769,7 +746,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6babf80c532c4b46a52ad1a52f3f458, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeToStart: 10
+  timeToStart: 3
   StartButton: {fileID: 3772266209805541280}
   countDownDisplay: {fileID: 2050105935}
   nextLevel: 2
@@ -795,6 +772,29 @@ MonoBehaviour:
   sceneViewId: 1
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!114 &1209575184547621720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1209575184547621717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86181df156ec349d9b126ce7cafe474e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnPoints:
+  - {fileID: 1209575184721150569}
+  - {fileID: 1209575184966088858}
+  - {fileID: 1209575184499127782}
+  - {fileID: 1209575184370641275}
+  - {fileID: 1209575184068446360}
+  - {fileID: 1209575184867139094}
+  - {fileID: 1209575184381709289}
+  - {fileID: 1209575185241232560}
+  - {fileID: 1209575184519966175}
+  - {fileID: 1209575183873816585}
 --- !u!4 &1209575184611932496
 Transform:
   m_ObjectHideFlags: 0
