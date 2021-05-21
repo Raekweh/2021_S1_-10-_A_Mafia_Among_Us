@@ -9,13 +9,14 @@ public class VotingTimer : MonoBehaviour
     //The time limit
     [SerializeField] private float timeLimit;
 
-    //Timer being counted up to the time limit
-
+    //Displaying the count down for voting
     [SerializeField]Text countdownDisplay;
 
-    void start()
+    Canvas VotingCanvas;
+
+    void Awake()
     {
-        timeLimit = 10F;
+        VotingCanvas = GetComponent<Canvas>();
     }
 
     void Update()
@@ -29,7 +30,7 @@ public class VotingTimer : MonoBehaviour
         //If the time counter reaches the time limit then the scene changes
         if(timeLimit <= 0)
         {
-             SceneManager.LoadScene("Game");
+            VotingCanvas.enabled = false;
         }
     }
 }
