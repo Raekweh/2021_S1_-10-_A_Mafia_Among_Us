@@ -12,12 +12,7 @@ public class VotingTimer : MonoBehaviour
     //Displaying the count down for voting
     [SerializeField]Text countdownDisplay;
 
-    Canvas VotingCanvas;
-
-    void Awake()
-    {
-        VotingCanvas = GetComponent<Canvas>();
-    }
+    [SerializeField]Canvas VotingCanvas;
 
     void Update()
     {
@@ -30,7 +25,8 @@ public class VotingTimer : MonoBehaviour
         //If the time counter reaches the time limit then the scene changes
         if(timeLimit <= 0)
         {
-            VotingCanvas.enabled = false;
+            VotingCanvas.GetComponent<Canvas>().enabled = false;
+            timeLimit = 0;
         }
     }
 }

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 969491556268714158}
   - component: {fileID: 969491556268714157}
   - component: {fileID: 969491556268714144}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: VotingCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129,7 +129,7 @@ GameObject:
   - component: {fileID: 969491556429287402}
   - component: {fileID: 969491556429287404}
   - component: {fileID: 969491556429287403}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Countdown
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -208,7 +208,7 @@ GameObject:
   - component: {fileID: 969491557224662887}
   - component: {fileID: 969491557224662873}
   - component: {fileID: 969491557224662872}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -284,7 +284,7 @@ GameObject:
   - component: {fileID: 969491557838274999}
   - component: {fileID: 969491557838274998}
   - component: {fileID: 969491557838274997}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SkipButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -403,7 +403,7 @@ GameObject:
   - component: {fileID: 969491558099867256}
   - component: {fileID: 969491558099867258}
   - component: {fileID: 969491558099867257}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: WhoTheImposter
   m_TagString: Untagged
   m_Icon: {fileID: 0}

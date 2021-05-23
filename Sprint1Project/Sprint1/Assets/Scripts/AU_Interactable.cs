@@ -23,6 +23,7 @@ public class AU_Interactable : MonoBehaviour
             highlight.SetActive(false);
         }
     }
+    
     public void PlayMiniGame()
     {
         miniGame.SetActive(true);

@@ -211,7 +211,6 @@ public class AU_PlayerController : MonoBehaviour
                 }
                 else
                 {
-
                     bodiesFound.Remove(body.transform);
                 }
             }
@@ -236,7 +235,6 @@ public class AU_PlayerController : MonoBehaviour
     {
         if (context.phase == InputActionPhase.Performed)
         {
-            //Debug.Log("Here");
             RaycastHit hit;
             Ray ray = myCamera.ScreenPointToRay(mousePositionInput);
             if (Physics.Raycast(ray, out hit,interactLayer))
