@@ -20,6 +20,13 @@ public class AU_PlayerController : MonoBehaviour
     [SerializeField] Color myColor;
     SpriteRenderer myAvatarSprite;
     //Role
+
+    [SerializeField] bool isAngel;
+    [SerializeField] InputAction REVIVE;
+    float reviveInput;
+
+
+
     [SerializeField] bool isImposter;
     [SerializeField] InputAction KILL;
     float killInput;
@@ -36,6 +43,7 @@ public class AU_PlayerController : MonoBehaviour
     {
         KILL.performed += KillTarget;
         REPORT.performed += ReportBody;
+        REVIVE.performed += ReviveTarget;
     }
 
     //This method enables the movement input, killing and reporting functionality
@@ -44,6 +52,7 @@ public class AU_PlayerController : MonoBehaviour
         WASD.Enable();
         KILL.Enable();
         REPORT.Enable();
+        REVIVE.Enable();
     }
 
     //This method disables the movement input, killing and reporting functionality
@@ -52,6 +61,7 @@ public class AU_PlayerController : MonoBehaviour
         WASD.Disable();
         KILL.Disable();
         REPORT.Disable();
+        REVIVE.Disable();
     }
 
     // Start is called before the first frame update
@@ -114,6 +124,7 @@ public class AU_PlayerController : MonoBehaviour
     public void SetRole(bool newRole)
     {
         isImposter = newRole;
+        isAngel = newRole;
     }
 
     //this method adds potential murder targers to a target array when they enter the range
@@ -125,6 +136,16 @@ public class AU_PlayerController : MonoBehaviour
             if (isImposter)
             {
                 if (tempTarget.isImposter)
+                    return;
+                else
+                {
+                    targets.Add(tempTarget);
+
+                }
+            }
+            if (isAngel)
+            {
+                if (tempTarget.isDead!=false)
                     return;
                 else
                 {
@@ -166,6 +187,37 @@ public class AU_PlayerController : MonoBehaviour
             }
         }
     }
+
+    //This method will kill the last player to enter the imposters kill radius
+    private void ReviveTarget(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            //Debug.Log(targets.Count);
+            if (targets.Count == 0)
+                return;
+            else
+            {
+                if (targets[targets.Count - 1].isDead==false)
+                    return;
+                transform.position = targets[targets.Count - 1].transform.position;
+                targets[targets.Count - 1].Backy();
+                // targets.RemoveAt(targets.Count - 1);
+            }
+        }
+    }
+
+    //this method will cause the plauyer to die leaving a dead sprite at the location of death
+    public void Backy()
+    {
+        AU_Body tempBody = Instantiate(bodyPrefab, transform.position, transform.rotation).GetComponent<AU_Body>();
+        tempBody.SetColor(myAvatarSprite.color);
+        isDead = false;
+        myAnim.SetBool("IsDead", isDead);
+        gameObject.layer = 9;
+        myCollider.enabled = true;
+    }
+
 
     //this method will cause the plauyer to die leaving a dead sprite at the location of death
     public void Die()

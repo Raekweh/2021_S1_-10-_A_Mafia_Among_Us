@@ -308,6 +308,15 @@ MonoBehaviour:
       m_Flags: 8
   movementSpeed: 5
   myColor: {r: 0, g: 0, b: 0, a: 0}
+  isAngel: 0
+  REVIVE:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 4a1934c5-8a4b-4706-9695-df8e43511214
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
   isImposter: 1
   KILL:
     m_Name: KILL
