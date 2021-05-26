@@ -1,20 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using Photon.Pun;
 
 public class AU_GameController : MonoBehaviour
 {
+
     PhotonView myPV;
     int whichPlayerIsImposter;
-
-    bool pvinit = false;
 
     // Start is called before the first frame update
     void Start()
     {
+
         myPV = GetComponent<PhotonView>();
+
 
         if(PhotonNetwork.IsMasterClient)
         {
@@ -28,11 +28,11 @@ public class AU_GameController : MonoBehaviour
         myPV.RPC("RPC_SyncImposter", RpcTarget.All, whichPlayerIsImposter);
         Debug.Log("Imposter " + whichPlayerIsImposter);
     }
-
+    
     [PunRPC]
     void RPC_SyncImposter(int playerNumber)
     {
         whichPlayerIsImposter = playerNumber;
-        AU_PlayerController.localPlayer.BecomeImposter(whichPlayerIsImposter);
+        AU_PlayerController.localPlayer.setImposterNumber(whichPlayerIsImposter);
     }
 }

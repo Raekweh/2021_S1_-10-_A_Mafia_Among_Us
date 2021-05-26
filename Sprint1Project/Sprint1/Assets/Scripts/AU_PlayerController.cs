@@ -27,7 +27,8 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
 
     //Role
     [SerializeField] bool isImposter;
-    bool impasta;
+    static int imposterNumber;
+    static bool imposterNumberAssigned;
     [SerializeField] InputAction KILL;
     float killInput;
     List<AU_PlayerController> targets;
@@ -104,8 +105,13 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
     // Update is called once per frame
     void Update()
     {
-        // Debug.Log("IMPASTA = "+impasta);
-        // Debug.Log("Is imposter = "+isImposter);
+        Debug.Log(imposterNumberAssigned);
+        if(!isImposter && imposterNumberAssigned){
+            BecomeImposter(imposterNumber);
+        }
+        Debug.Log("this = "+this);
+        Debug.Log("Is imposter = "+this.isImposter);
+
         myAvatar.localScale = new Vector2(direction, 1);
 
         if (!myPV.IsMine)
@@ -284,7 +290,12 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
         else
         {
             this.direction = (float)stream.ReceiveNext();
+            bool test = (isImposter==true);
             this.isImposter = (bool)stream.ReceiveNext();
+            if(test && !isImposter){
+                Debug.Log("Imposter is being set false over here");
+
+            }
         }
     }
 
@@ -292,12 +303,22 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
     {
         if(PhotonNetwork.LocalPlayer == PhotonNetwork.PlayerList[ImposterNumber])
         {
-            isImposter = true;
-            impasta = true;
-            Debug.Log("Is imposter ="+isImposter);
-            Debug.Log("-----------Impasta ="+impasta);
+            
+            if(this!=null){
+                this.isImposter = true;
+                Debug.Log("this = "+localPlayer);
+                Debug.Log("Is imposter ="+isImposter);
+            }
+            else{
+                Debug.Log("this is equal to null therefore imposter was not set ");
+            }
 
         }
+    }
+
+    public void setImposterNumber(int ImposterNumber){
+        imposterNumber = ImposterNumber;
+        imposterNumberAssigned = true;
     }
     
 }
