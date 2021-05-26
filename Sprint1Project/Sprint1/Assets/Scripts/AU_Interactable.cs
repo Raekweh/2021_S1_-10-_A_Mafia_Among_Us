@@ -5,6 +5,9 @@ public class AU_Interactable : MonoBehaviour
 {
     [SerializeField] GameObject miniGame;
     GameObject highlight;
+
+    VotingTimer time;
+
     private void OnEnable()
     {
         highlight = transform.GetChild(0).gameObject;
@@ -24,8 +27,14 @@ public class AU_Interactable : MonoBehaviour
         }
     }
     
+    //THis mini game is testing out the timer
     public void PlayMiniGame()
     {
+        // time = GetComponent<VotingTimer>();
+        // if(time.timer() == 0)
+        // {
+        //     miniGame.SetActive(false);
+        // }
         miniGame.SetActive(true);
     }
 }
