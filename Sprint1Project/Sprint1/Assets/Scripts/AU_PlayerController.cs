@@ -210,8 +210,8 @@ public class AU_PlayerController : MonoBehaviour
     //this method will cause the plauyer to die leaving a dead sprite at the location of death
     public void Backy()
     {
-        AU_Body tempBody = Instantiate(bodyPrefab, transform.position, transform.rotation).GetComponent<AU_Body>();
-        tempBody.SetColor(myAvatarSprite.color);
+        //AU_Body tempBody = Instantiate(bodyPrefab, transform.position, transform.rotation).GetComponent<AU_Body>();
+        //tempBody.SetColor(myAvatarSprite.color);
         isDead = false;
         myAnim.SetBool("IsDead", isDead);
         gameObject.layer = 9;
