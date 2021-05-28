@@ -58,9 +58,9 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
-A Mafia Among Us/UserSettings/EditorUserSettings.asset
-A Mafia Among Us/.DS_Store
-.DS_Store
-A Mafia Among Us/UserSettings/EditorUserSettings.asset
-A Mafia Among Us/UserSettings/EditorUserSettings.asset
 *.meta
+!*.*.meta
+
+#macOS
+*.DS_Store
+
