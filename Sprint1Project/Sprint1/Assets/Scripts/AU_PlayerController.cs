@@ -29,6 +29,7 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
     [SerializeField] bool isImposter;
     static int imposterNumber;
     static bool imposterNumberAssigned;
+    static bool imposterAssigned;
     [SerializeField] InputAction KILL;
     float killInput;
     List<AU_PlayerController> targets;
@@ -106,8 +107,9 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
     void Update()
     {
         Debug.Log(imposterNumberAssigned);
-        if(!isImposter && imposterNumberAssigned){
+        if(!isImposter && imposterNumberAssigned && !imposterAssigned){
             BecomeImposter(imposterNumber);
+            imposterAssigned = true;
         }
         Debug.Log("this = "+this);
         Debug.Log("Is imposter = "+this.isImposter);
@@ -159,7 +161,6 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
     public void SetRole(bool newRole)
     {
         isImposter = newRole;
-        Debug.Log("Is Imposter being reset");
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -290,12 +291,7 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
         else
         {
             this.direction = (float)stream.ReceiveNext();
-            bool test = (isImposter==true);
             this.isImposter = (bool)stream.ReceiveNext();
-            if(test && !isImposter){
-                Debug.Log("Imposter is being set false over here");
-
-            }
         }
     }
 
@@ -304,14 +300,9 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
         if(PhotonNetwork.LocalPlayer == PhotonNetwork.PlayerList[ImposterNumber])
         {
             
-            if(this!=null){
-                this.isImposter = true;
-                Debug.Log("this = "+localPlayer);
-                Debug.Log("Is imposter ="+isImposter);
-            }
-            else{
-                Debug.Log("this is equal to null therefore imposter was not set ");
-            }
+            this.isImposter = true;
+            Debug.Log("this = "+localPlayer);
+            Debug.Log("Is imposter ="+isImposter);
 
         }
     }

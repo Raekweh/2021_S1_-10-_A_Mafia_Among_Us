@@ -746,7 +746,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6babf80c532c4b46a52ad1a52f3f458, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeToStart: 3
+  timeToStart: 5
   StartButton: {fileID: 3772266209805541280}
   countDownDisplay: {fileID: 2050105935}
   nextLevel: 2
