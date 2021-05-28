@@ -54,7 +54,6 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
     private void Awake()
     {
         KILL.performed += KillTarget;
-        REPORT.performed += ReportBody;
         INTERACTION.performed += Interact;
     }
     private void OnEnable()
@@ -65,7 +64,6 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
         MOUSE.Enable();
         INTERACTION.Enable();
     }
-
     private void OnDisable()
     {
         WASD.Disable();
@@ -74,7 +72,6 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
         MOUSE.Disable();
         INTERACTION.Disable();
     }
-    
     // Start is called before the first frame update
     void Start()
     {
@@ -91,7 +88,6 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
         myAnim = GetComponent<Animator>();
         myAvatar = transform.GetChild(0);
         myAvatarSprite = myAvatar.GetComponent<SpriteRenderer>();
-
         if (!myPV.IsMine)
         {
             myCamera.gameObject.SetActive(false);
@@ -162,12 +158,10 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
             myAvatarSprite.color = myColor;
         }
     }
-
     public void SetRole(bool newRole)
     {
         isImposter = newRole;
     }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
@@ -180,11 +174,11 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
                 else
                 {
                     targets.Add(tempTarget);
+                    
                 }
             }
         }
     }
-
     private void OnTriggerExit(Collider other)
     {
         if (other.tag == "Player")
@@ -192,7 +186,6 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
             AU_PlayerController tempTarget = other.GetComponent<AU_PlayerController>();
             if (targets.Contains(tempTarget))
             {
-
                     targets.Remove(tempTarget);
             }
         }
@@ -216,14 +209,12 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
                 if (targets[targets.Count - 1].isDead)
                     return;
                 transform.position = targets[targets.Count - 1].transform.position;
-
                 // targets[targets.Count - 1].Die();
                 targets[targets.Count - 1].myPV.RPC("RPC_Kill", RpcTarget.All);
                 targets.RemoveAt(targets.Count - 1);
             }
         }
     }
-
 
     [PunRPC]
     void RPC_Kill()
@@ -244,7 +235,6 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
         gameObject.layer = 9;
         myCollider.enabled = false;
     }
-
     void BodySearch()
     {
         foreach(Transform body in allBodies)
@@ -252,7 +242,6 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
             RaycastHit hit;
             Ray ray = new Ray(transform.position, body.position - transform.position);
             Debug.DrawRay(transform.position, body.position - transform.position, Color.cyan);
-
             if(Physics.Raycast(ray, out hit, 1000f, ~ignoreForBody))
             {
                 
@@ -266,32 +255,31 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
                 }
                 else
                 {
+                    
                     bodiesFound.Remove(body.transform);
                 }
             }
         }
     }
-
     void Interact(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Performed)
         {
+            Debug.Log("Here");
             RaycastHit hit;
             Ray ray = myCamera.ScreenPointToRay(mousePositionInput);
             if (Physics.Raycast(ray, out hit,interactLayer))
             {
                 if (hit.transform.tag == "Interactable")
                 {
-
-                    if (!hit.transform.GetChild(0).gameObject.activeInHierarchy)
-                        return;
-                    AU_Interactable temp = hit.transform.GetComponent<AU_Interactable>();
-                    temp.PlayMiniGame();
+                    // AU_Interactable temp = hit.transform.GetComponent<AU_Interactable>();
+                    // temp.PlayMiniGame();
                 }
             }
-        } 
+           
+        }
+        
     }
-
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
@@ -323,4 +311,5 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
         imposterNumber = ImposterNumber;
         imposterNumberAssigned = true;
     }
+    
 }
