@@ -23,7 +23,9 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
     float direction = 1;
     //Player Color
     static Color myColor;
-    SpriteRenderer myAvatarSprite;
+    Vector3 colorVector;
+    Color syncColor;
+    [SerializeField] SpriteRenderer myAvatarSprite;
 
     //Role
     [SerializeField] bool isImposter;
@@ -106,18 +108,20 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(imposterNumberAssigned);
+        // Debug.Log(imposterNumberAssigned);
         if(!isImposter && imposterNumberAssigned && !imposterAssigned){
             BecomeImposter(imposterNumber);
             imposterAssigned = true;
         }
-        Debug.Log("this = "+this);
-        Debug.Log("Is imposter = "+this.isImposter);
+        // Debug.Log("this = "+this);
+        // Debug.Log("Is imposter = "+this.isImposter);
 
         myAvatar.localScale = new Vector2(direction, 1);
 
-        if (!myPV.IsMine)
+        if (!myPV.IsMine){
+            myAvatarSprite.color = syncColor;
             return;
+        }
 
         movementInput = WASD.ReadValue<Vector2>();
         myAnim.SetFloat("Speed", movementInput.magnitude);
@@ -287,11 +291,15 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
         {
             stream.SendNext(direction);
             stream.SendNext(isImposter);
+            colorVector = new Vector3(myColor.r, myColor.g, myColor.b);
+            stream.SendNext(colorVector);
         }
         else
         {
             this.direction = (float)stream.ReceiveNext();
             this.isImposter = (bool)stream.ReceiveNext();
+            this.colorVector = (Vector3)stream.ReceiveNext();
+            syncColor = new Color(colorVector.x, colorVector.y, colorVector.z, 1.0f);
         }
     }
 

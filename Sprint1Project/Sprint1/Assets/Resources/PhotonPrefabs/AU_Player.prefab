@@ -310,6 +310,7 @@ MonoBehaviour:
       m_Action: WASD
       m_Flags: 8
   movementSpeed: 5
+  myAvatarSprite: {fileID: 6188980618060967481}
   isImposter: 0
   KILL:
     m_Name: KILL
@@ -449,7 +450,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_SynchronizeVelocity: 1
-  m_SynchronizeAngularVelocity: 0
+  m_SynchronizeAngularVelocity: 1
   m_TeleportEnabled: 1
   m_TeleportIfDistanceGreaterThan: 3
 --- !u!114 &6684699191799210389

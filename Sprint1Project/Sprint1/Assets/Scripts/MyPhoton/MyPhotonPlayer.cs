@@ -21,6 +21,7 @@ public class MyPhotonPlayer : MonoBehaviour
 
         foreach(Player p in allPlayers)
         {
+            Debug.Log("Player = "+p);
             if(p!= PhotonNetwork.LocalPlayer)
             {
                 myNumberInRoom++;
