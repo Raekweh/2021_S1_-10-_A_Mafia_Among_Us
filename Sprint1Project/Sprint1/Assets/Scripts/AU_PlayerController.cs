@@ -270,15 +270,31 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
             Ray ray = myCamera.ScreenPointToRay(mousePositionInput);
             if (Physics.Raycast(ray, out hit,interactLayer))
             {
+                //If the tag is an Interactable/Task
                 if (hit.transform.tag == "Interactable")
                 {
-                    // AU_Interactable temp = hit.transform.GetComponent<AU_Interactable>();
-                    // temp.PlayMiniGame();
+                    if (!hit.transform.GetChild(0).gameObject.activeInHierarchy)
+                    { 
+                        return;
+                    }
+                    AU_Interactable temp = hit.transform.GetComponent<AU_Interactable>();
+                    temp.PlayMiniGame();
+                }
+
+                if(hit.transform.tag == "Vent")
+                {
+                    myAnim.SetBool("Vented",true);
+                    AU_Interactable temp = hit.transform.GetComponent<AU_Interactable>();
+                    temp.PlayMiniGame();
                 }
             }
            
         }
-        
+    }
+
+    public void ExitVent()
+    {
+        myAnim.SetBool("Vented", false);
     }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)

@@ -355,7 +355,15 @@ MonoBehaviour:
     m_Id: cd392a40-f1d9-43f9-bf98-b3253d4bd20d
     m_Processors: 
     m_Interactions: 
-    m_SingletonActionBindings: []
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: aee7e232-0f72-4d26-9d29-1dbaa0bfad48
+      m_Path: 
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: MOUSE
+      m_Flags: 0
   INTERACTION:
     m_Name: INTERACTION
     m_Type: 0
@@ -366,7 +374,7 @@ MonoBehaviour:
     m_SingletonActionBindings: []
   interactLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   lightMask: {fileID: 472144661}
 --- !u!54 &6188980616498085204
 Rigidbody:
@@ -433,7 +441,7 @@ MonoBehaviour:
   - {fileID: 6188980616498085201}
   - {fileID: 8628971051939576975}
   - {fileID: 6684699191799210389}
-  sceneViewId: 0
+  sceneViewId: 1
   InstantiationId: 0
   isRuntimeInstantiated: 0
 --- !u!114 &8628971051939576975
@@ -473,6 +481,9 @@ MonoBehaviour:
   - Type: 4
     SynchronizeType: 1
     Name: IsDead
+  - Type: 4
+    SynchronizeType: 1
+    Name: Vented
   m_SynchronizeLayers:
   - SynchronizeType: 0
     LayerIndex: 0
