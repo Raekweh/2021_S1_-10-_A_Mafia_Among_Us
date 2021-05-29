@@ -288,7 +288,6 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
                     temp.PlayMiniGame();
                 }
             }
-           
         }
     }
 

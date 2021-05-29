@@ -145,6 +145,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e74597c193fb04be6807e43b587a4d0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentVent: {fileID: 0}
-  nextVent: {fileID: 0}
+  currentPanel: {fileID: 0}
+  nextPanel: {fileID: 0}
   newPosition: {fileID: 0}

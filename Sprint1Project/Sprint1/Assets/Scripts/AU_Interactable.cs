@@ -28,6 +28,7 @@ public class AU_Interactable : MonoBehaviour
     //THis mini game is testing out the timer
     public void PlayMiniGame()
     {
+        Debug.Log("-----------------------------------------------------------------------------------------------------------------This is Cafeteria");
         miniGame.SetActive(true);
     }
 }

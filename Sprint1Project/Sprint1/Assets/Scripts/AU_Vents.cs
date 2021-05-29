@@ -4,21 +4,21 @@ using UnityEngine;
 
 public class AU_Vents : MonoBehaviour
 {
-    [SerializeField] GameObject currentVent;
-    [SerializeField] GameObject nextVent;
+    [SerializeField] GameObject currentPanel;
+    [SerializeField] GameObject nextPanel;
 
-    [SerializeField] Transform newPosition;
+    [SerializeField] Transform NewPosition;
 
     public void ChangeVent()
     {
-        currentVent.SetActive(false);
-        nextVent.SetActive(true);
-        AU_PlayerController.localPlayer.transform.position = newPosition.position;
+        currentPanel.SetActive(false);
+        nextPanel.SetActive(true);
+        AU_PlayerController.localPlayer.transform.position = NewPosition.position;
     }
 
     public void ExitVent()
     {
-        currentVent.SetActive(false);
+        currentPanel.SetActive(false);
         AU_PlayerController.localPlayer.ExitVent();
     }
 }
