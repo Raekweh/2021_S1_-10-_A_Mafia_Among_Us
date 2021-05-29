@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -34,6 +35,8 @@ public class KepadTask : MonoBehaviour
             return;
         }
 
+        _inputCode.text += number;
+
         if (_inputCode.text == _cardCode.text)
         {
             _inputCode.text = "Correct";
@@ -56,5 +59,4 @@ public class KepadTask : MonoBehaviour
         _inputCode.text = string.Empty;
         _isResetting = false;
     }
-
 }

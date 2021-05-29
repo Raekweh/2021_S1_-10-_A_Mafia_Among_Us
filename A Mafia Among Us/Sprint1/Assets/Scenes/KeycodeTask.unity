@@ -315,7 +315,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -160.4, y: 107.1}
+  m_AnchoredPosition: {x: -150.2, y: 107.8}
   m_SizeDelta: {x: 139.7683, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &101589333
@@ -1621,7 +1621,7 @@ MonoBehaviour:
   _cardCode: {fileID: 656847498}
   _inputCode: {fileID: 101589333}
   _codeLength: 5
-  _codeResetTimeInSeconds: 0.5
+  _codeResetTimeInSeconds: 0.75
 --- !u!114 &1005853889
 MonoBehaviour:
   m_ObjectHideFlags: 0
