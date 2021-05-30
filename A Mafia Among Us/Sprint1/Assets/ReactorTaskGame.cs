@@ -11,12 +11,12 @@ public class ReactorTaskGame : MonoBehaviour
 
     void Start()
     {
-        nextButton = 0;
+        nextButton = 1;
     }
 
     private void OnEnable()
     {
-        nextButton = 0;
+        nextButton = 1;
         for(int i = 0; i < myObjects.Length; i++)
         {
             myObjects[i].transform.SetSiblingIndex(Random.Range(0, 9));
@@ -26,7 +26,13 @@ public class ReactorTaskGame : MonoBehaviour
     public void ButtonOrder(int button)
     {
         Debug.Log("Pressed");
-        if (button == nextButton)
+        if (button == 10 && button == nextButton)
+        {
+            Debug.Log("Pass");
+            nextButton = 0;
+            ButtonOrderPanelClose();
+        }
+        else if (button == nextButton)
         {
             nextButton++;
             Debug.Log("Next Button" + nextButton);
@@ -35,15 +41,10 @@ public class ReactorTaskGame : MonoBehaviour
         {
             Debug.Log("Failed");
             Debug.Log("Next Button" + nextButton);
-            nextButton = 0;
+            nextButton = 1;
             OnEnable();
         }
-        if (button == 9 && button == nextButton)
-        {
-            Debug.Log("Pass");
-            nextButton = 0;
-            ButtonOrderPanelClose();
-        }
+        
     }
 
     public void ButtonOrderPanelClose()
