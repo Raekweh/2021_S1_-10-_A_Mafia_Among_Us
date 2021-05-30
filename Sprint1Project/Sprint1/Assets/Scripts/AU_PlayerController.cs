@@ -211,7 +211,7 @@ public class AU_PlayerController : MonoBehaviour
     public void Backy()
     {
         //AU_Body tempBody = Instantiate(bodyPrefab, transform.position, transform.rotation).GetComponent<AU_Body>();
-        //tempBody.SetColor(myAvatarSprite.color);
+        //watempBody.SetColor(myAvatarSprite.color);
         isDead = false;
         myAnim.SetBool("IsDead", isDead);
         gameObject.layer = 9;
