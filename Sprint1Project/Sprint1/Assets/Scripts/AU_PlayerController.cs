@@ -11,6 +11,7 @@ public class AU_PlayerController : MonoBehaviour
     //key used to inspect player
     int inspecKey = 0;
     bool isMaffy = true;
+    bool isInspectAni;
 
     //Components
     Rigidbody myRB;
@@ -41,6 +42,7 @@ public class AU_PlayerController : MonoBehaviour
     List<AU_PlayerController> targets;
     [SerializeField] Collider myCollider;
     bool isDead;
+    
     [SerializeField] GameObject bodyPrefab;
     public static List<Transform> allBodies;
     List<Transform> bodiesFound;
@@ -248,7 +250,7 @@ public class AU_PlayerController : MonoBehaviour
                     return;
                 }
                 transform.position = targets[targets.Count - 1].transform.position;
-                targets[targets.Count - 1].Backy();
+                targets[targets.Count - 1].Inspectyy();
                 // targets.RemoveAt(targets.Count - 1);
             }
         }
@@ -259,7 +261,19 @@ public class AU_PlayerController : MonoBehaviour
         return 0;
     }
 
-    //this method will cause the plauyer to die leaving a dead sprite at the location of death
+    //this method will cause the player to revive
+    public void Inspectyy()
+    {
+        //AU_Body tempBody = Instantiate(bodyPrefab, transform.position, transform.rotation).GetComponent<AU_Body>();
+        //watempBody.SetColor(myAvatarSprite.color);
+        //isDead = false;
+        isInspectAni = true;
+        myAnim.SetBool("isInspectAni", isInspectAni);
+        gameObject.layer = 9;
+        myCollider.enabled = true;
+    }
+
+    //this method will cause the player to revive
     public void Backy()
     {
         //AU_Body tempBody = Instantiate(bodyPrefab, transform.position, transform.rotation).GetComponent<AU_Body>();
