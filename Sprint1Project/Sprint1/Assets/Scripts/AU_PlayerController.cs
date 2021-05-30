@@ -8,6 +8,10 @@ public class AU_PlayerController : MonoBehaviour
     [SerializeField] bool hasControl;
     public static AU_PlayerController localPlayer;
 
+    //key used to inspect player
+    int inspecKey = 0;
+    bool isMaffy = true;
+
     //Components
     Rigidbody myRB;
     Animator myAnim;
@@ -24,6 +28,10 @@ public class AU_PlayerController : MonoBehaviour
     [SerializeField] bool isAngel;
     [SerializeField] InputAction REVIVE;
     float reviveInput;
+
+    [SerializeField] bool isInspector;
+    [SerializeField] InputAction INSPECTT;
+    float inspecttInput;
 
 
 
@@ -44,6 +52,7 @@ public class AU_PlayerController : MonoBehaviour
         KILL.performed += KillTarget;
         REPORT.performed += ReportBody;
         REVIVE.performed += ReviveTarget;
+        INSPECTT.performed += InspecttTarget;
     }
 
     //This method enables the movement input, killing and reporting functionality
@@ -53,6 +62,7 @@ public class AU_PlayerController : MonoBehaviour
         KILL.Enable();
         REPORT.Enable();
         REVIVE.Enable();
+        INSPECTT.Enable();
     }
 
     //This method disables the movement input, killing and reporting functionality
@@ -62,6 +72,7 @@ public class AU_PlayerController : MonoBehaviour
         KILL.Disable();
         REPORT.Disable();
         REVIVE.Disable();
+        INSPECTT.Disable();
     }
 
     // Start is called before the first frame update
@@ -125,6 +136,7 @@ public class AU_PlayerController : MonoBehaviour
     {
         isImposter = newRole;
         isAngel = newRole;
+        isInspector = newRole;
     }
 
     //this method adds potential murder targers to a target array when they enter the range
@@ -145,11 +157,21 @@ public class AU_PlayerController : MonoBehaviour
             }
             if (isAngel)
             {
-                if (tempTarget.isDead!=false)
+                if (tempTarget.isDead != false)
                     return;
                 else
                 {
                     targets.Add(tempTarget);
+
+                }
+            }
+            if (isInspector)
+            {
+                if (tempTarget.isImposter)
+                    targets.Add(tempTarget);
+                else
+                {
+                    return;
 
                 }
             }
@@ -174,6 +196,8 @@ public class AU_PlayerController : MonoBehaviour
     {
         if (context.phase == InputActionPhase.Performed)
         {
+            ///////////////////////////////////////////////////////////////////////////////////
+            isMaffy = false;
             //Debug.Log(targets.Count);
             if (targets.Count == 0)
                 return;
@@ -184,11 +208,12 @@ public class AU_PlayerController : MonoBehaviour
                 transform.position = targets[targets.Count - 1].transform.position;
                 targets[targets.Count - 1].Die();
                 targets.RemoveAt(targets.Count - 1);
+                inspecKey = 1;
             }
         }
     }
 
-    //This method will kill the last player to enter the imposters kill radius
+    //This method will Revive the last player to enter the Angels kill radius
     private void ReviveTarget(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Performed)
@@ -198,13 +223,40 @@ public class AU_PlayerController : MonoBehaviour
                 return;
             else
             {
-                if (targets[targets.Count - 1].isDead==false)
+                if (targets[targets.Count - 1].isDead == false)
                     return;
                 transform.position = targets[targets.Count - 1].transform.position;
                 targets[targets.Count - 1].Backy();
                 // targets.RemoveAt(targets.Count - 1);
             }
         }
+    }
+
+    //This method will Revive the last player to enter the Angels kill radius
+    private void InspecttTarget(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            //Debug.Log(targets.Count);
+            if (targets.Count == 0)
+                return;
+            else
+            {
+
+                if (targets[targets.Count - 1].isImposter)
+                {
+                    return;
+                }
+                transform.position = targets[targets.Count - 1].transform.position;
+                targets[targets.Count - 1].Backy();
+                // targets.RemoveAt(targets.Count - 1);
+            }
+        }
+    }
+
+    public int getKey()
+    {
+        return 0;
     }
 
     //this method will cause the plauyer to die leaving a dead sprite at the location of death
