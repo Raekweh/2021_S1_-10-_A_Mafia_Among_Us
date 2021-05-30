@@ -265,20 +265,18 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
     {
         if (context.phase == InputActionPhase.Performed)
         {
-            Debug.Log("Here");
+
             RaycastHit hit;
             Ray ray = myCamera.ScreenPointToRay(mousePositionInput);
             if (Physics.Raycast(ray, out hit,interactLayer))
             {
-                Debug.Log("Moshi Moshi");
-                //If the tag is an Interactable/Task
+
                 if (hit.transform.tag == "Interactable")
                 {
                     if (!hit.transform.GetChild(0).gameObject.activeInHierarchy)
-                    { 
+                       
                         return;
-                    }
-                    Debug.Log("The interactable tag is legit");
+
                     AU_Interactable temp = hit.transform.GetComponent<AU_Interactable>();
                     temp.PlayMiniGame();
                 }
@@ -290,8 +288,9 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
                     AU_Interactable temp = hit.transform.GetComponent<AU_Interactable>();
                     temp.PlayMiniGame();
                 }
+                Debug.Log("Poo");
             }
-        }
+        } 
     }
 
     public void ExitVent()
