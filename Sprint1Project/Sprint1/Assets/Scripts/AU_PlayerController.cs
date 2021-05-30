@@ -255,7 +255,7 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
                 }
                 else
                 {
-                    
+
                     bodiesFound.Remove(body.transform);
                 }
             }
@@ -274,13 +274,13 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
                 if (hit.transform.tag == "Interactable")
                 {
                     if (!hit.transform.GetChild(0).gameObject.activeInHierarchy)
-                       
+                    {   
                         return;
-
+                    }
                     AU_Interactable temp = hit.transform.GetComponent<AU_Interactable>();
                     temp.PlayMiniGame();
                 }
-
+                
                 if(hit.transform.tag == "Vent")
                 {
                     Debug.Log("The vent tag is legit");
@@ -288,7 +288,7 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
                     AU_Interactable temp = hit.transform.GetComponent<AU_Interactable>();
                     temp.PlayMiniGame();
                 }
-                Debug.Log("Poo");
+                Debug.Log("Here");
             }
         } 
     }
