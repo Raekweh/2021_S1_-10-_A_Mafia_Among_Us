@@ -9,8 +9,6 @@ public class AU_PlayerController : MonoBehaviour
     public static AU_PlayerController localPlayer;
 
     //key used to inspect player
-    int inspecKey = 0;
-    bool isMaffy = true;
     bool isInspectAni;
 
     //Components
@@ -198,8 +196,7 @@ public class AU_PlayerController : MonoBehaviour
     {
         if (context.phase == InputActionPhase.Performed)
         {
-            ///////////////////////////////////////////////////////////////////////////////////
-            isMaffy = false;
+            
             //Debug.Log(targets.Count);
             if (targets.Count == 0)
                 return;
@@ -210,7 +207,6 @@ public class AU_PlayerController : MonoBehaviour
                 transform.position = targets[targets.Count - 1].transform.position;
                 targets[targets.Count - 1].Die();
                 targets.RemoveAt(targets.Count - 1);
-                inspecKey = 1;
             }
         }
     }
@@ -245,7 +241,7 @@ public class AU_PlayerController : MonoBehaviour
             else
             {
 
-                if (targets[targets.Count - 1].isImposter)
+                if (targets[targets.Count - 1].isImposter==false)
                 {
                     return;
                 }
@@ -256,17 +252,10 @@ public class AU_PlayerController : MonoBehaviour
         }
     }
 
-    public int getKey()
-    {
-        return 0;
-    }
 
     //this method will cause the player to revive
     public void Inspectyy()
     {
-        //AU_Body tempBody = Instantiate(bodyPrefab, transform.position, transform.rotation).GetComponent<AU_Body>();
-        //watempBody.SetColor(myAvatarSprite.color);
-        //isDead = false;
         isInspectAni = true;
         myAnim.SetBool("isInspectAni", isInspectAni);
         gameObject.layer = 9;
