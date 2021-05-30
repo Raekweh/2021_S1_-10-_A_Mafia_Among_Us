@@ -38,7 +38,7 @@ public class ReactorTaskGame : MonoBehaviour
             nextButton = 0;
             OnEnable();
         }
-        if (button == 9)
+        if (button == 9 && button == nextButton)
         {
             Debug.Log("Pass");
             nextButton = 0;

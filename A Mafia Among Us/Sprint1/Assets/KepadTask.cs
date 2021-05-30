@@ -59,4 +59,5 @@ public class KepadTask : MonoBehaviour
         _inputCode.text = string.Empty;
         _isResetting = false;
     }
+
 }
