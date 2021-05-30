@@ -141,7 +141,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &73829790
 RectTransform:
   m_ObjectHideFlags: 0
@@ -558,8 +558,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1294857834}
   - component: {fileID: 1294857833}
-  - component: {fileID: 1294857832}
   - component: {fileID: 1294857835}
+  - component: {fileID: 1294857832}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -945,6 +945,10 @@ PrefabInstance:
     - target: {fileID: 5669233505675865929, guid: 02ed6d72ba37a4b0bab0dabd1af0a531, type: 3}
       propertyPath: m_Name
       value: CafeteriaVent
+      objectReference: {fileID: 0}
+    - target: {fileID: 5669233505675865929, guid: 02ed6d72ba37a4b0bab0dabd1af0a531, type: 3}
+      propertyPath: m_TagString
+      value: Vent
       objectReference: {fileID: 0}
     - target: {fileID: 5669233505675865930, guid: 02ed6d72ba37a4b0bab0dabd1af0a531, type: 3}
       propertyPath: m_RootOrder

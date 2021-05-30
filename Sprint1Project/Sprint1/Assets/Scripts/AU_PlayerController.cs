@@ -106,13 +106,13 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(imposterNumberAssigned);
+        // Debug.Log(imposterNumberAssigned);
         if(!isImposter && imposterNumberAssigned && !imposterAssigned){
             BecomeImposter(imposterNumber);
             imposterAssigned = true;
         }
-        Debug.Log("this = "+this);
-        Debug.Log("Is imposter = "+this.isImposter);
+        // Debug.Log("this = "+this);
+        // Debug.Log("Is imposter = "+this.isImposter);
 
         myAvatar.localScale = new Vector2(direction, 1);
 
@@ -174,7 +174,7 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
                 else
                 {
                     targets.Add(tempTarget);
-                    
+
                 }
             }
         }
@@ -270,6 +270,7 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
             Ray ray = myCamera.ScreenPointToRay(mousePositionInput);
             if (Physics.Raycast(ray, out hit,interactLayer))
             {
+                Debug.Log("Moshi Moshi");
                 //If the tag is an Interactable/Task
                 if (hit.transform.tag == "Interactable")
                 {
@@ -277,12 +278,14 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
                     { 
                         return;
                     }
+                    Debug.Log("The interactable tag is legit");
                     AU_Interactable temp = hit.transform.GetComponent<AU_Interactable>();
                     temp.PlayMiniGame();
                 }
 
                 if(hit.transform.tag == "Vent")
                 {
+                    Debug.Log("The vent tag is legit");
                     myAnim.SetBool("Vented",true);
                     AU_Interactable temp = hit.transform.GetComponent<AU_Interactable>();
                     temp.PlayMiniGame();
@@ -316,8 +319,8 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
         {
             
             this.isImposter = true;
-            Debug.Log("this = "+localPlayer);
-            Debug.Log("Is imposter ="+isImposter);
+            // Debug.Log("this = "+localPlayer);
+            // Debug.Log("Is imposter ="+isImposter);
 
         }
     }
