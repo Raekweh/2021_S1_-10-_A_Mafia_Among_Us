@@ -275,17 +275,18 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
             Ray ray = myCamera.ScreenPointToRay(mousePositionInput);
             if (Physics.Raycast(ray, out hit,interactLayer))
             {
-                
-                if (hit.transform.tag == "Interactable")
+                //If the Object has the tag interactable for task objects
+                if ((hit.transform.tag == "Interactable") && (isImposter == false))
                 {
-                    Debug.Log("THe interactable tag works");
+                    // Debug.Log("THe interactable tag works");
                     AU_Interactable temp = hit.transform.GetComponent<AU_Interactable>();
                     temp.PlayMiniGame(); 
                 }
             
-                if(hit.transform.tag == "Vent")
+                //If the Object has the tag Vent and if the player is an imposter
+                if((hit.transform.tag == "Vent") && (isImposter == true))
                 {
-                    Debug.Log("THe vent tag works");
+                    // Debug.Log("THe vent tag works");
                     myAnim.SetBool("Vented", true);
                     AU_Interactable temp = hit.transform.GetComponent<AU_Interactable>();
                     temp.PlayMiniGame();
