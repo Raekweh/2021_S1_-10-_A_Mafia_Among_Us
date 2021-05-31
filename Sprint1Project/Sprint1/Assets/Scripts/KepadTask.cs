@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class KepadTask : MonoBehaviour
 {
-    public Text cardCode;
-    public Text inputCode; 
+    [SerializeField] private Text cardCode;
+    [SerializeField] Text inputCode; 
     [SerializeField] int codeLength =5;
     [SerializeField] float codeResetTimeInSeconds = 0.5f;
     private bool isResetting = false;
