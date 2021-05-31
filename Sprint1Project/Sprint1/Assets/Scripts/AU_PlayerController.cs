@@ -10,8 +10,7 @@ using UnityEngine.SceneManagement;
 
 public class AU_PlayerController : MonoBehaviour, IPunObservable
 {
-    [SerializeField] Text playerName;
-    string username = "";
+    [SerializeField] Text playerTextField;
 
     [SerializeField] bool hasControl;
     public static AU_PlayerController localPlayer;
@@ -93,6 +92,11 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
         {
             localPlayer = this;
             Debug.Log("Player localised");
+            this.playerTextField.text = PhotonNetwork.NickName;
+        }
+        else
+        {
+            this.playerTextField.text = myPV.Owner.NickName;
         }
         myCamera = transform.GetChild(1).GetComponent<Camera>();
         targets = new List<AU_PlayerController>();
@@ -124,11 +128,7 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
     {
         if(!playersInGame.Contains(this)){
             playersInGame.Add(this);
-            username = "Player "+(playersInGame.IndexOf(this)+1);
-            Debug.Log(username);
         }
-        this.username = "Player "+(playersInGame.IndexOf(this)+1);
-        this.playerName.text = username;
 
         
         if(!isImposter && imposterNumberAssigned && !imposterAssigned){
@@ -141,6 +141,20 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
         if (!myPV.IsMine){
             myAvatarSprite.color = syncColor;
             return;
+        }
+
+        if (SceneManager.GetActiveScene().buildIndex == 1)
+        {
+            myCamera.enabled = false;
+        }
+
+        if (SceneManager.GetActiveScene().buildIndex == 2)
+        {
+            if (myPV.IsMine)
+            {
+                this.myCamera.enabled = true;
+            }
+            
         }
 
         movementInput = WASD.ReadValue<Vector2>();
@@ -313,7 +327,6 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
             stream.SendNext(isImposter);
             colorVector = new Vector3(myColor.r, myColor.g, myColor.b);
             stream.SendNext(colorVector);
-            // stream.SendNext(username);
         }
         else
         {
@@ -321,7 +334,6 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
             this.isImposter = (bool)stream.ReceiveNext();
             this.colorVector = (Vector3)stream.ReceiveNext();
             syncColor = new Color(colorVector.x, colorVector.y, colorVector.z, 1.0f);
-            // this.username = (string)stream.ReceiveNext();
         }
     }
 
