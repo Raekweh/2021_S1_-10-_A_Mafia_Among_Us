@@ -52,6 +52,10 @@ public class WaitingRoomController : MonoBehaviour
                 timerToStart = 100;
                 PhotonNetwork.AutomaticallySyncScene = true;
                 PhotonNetwork.LoadLevel(nextLevel);
+                foreach(AU_PlayerController p in AU_PlayerController.playersInGame)
+                {
+                    p.transform.position = AU_SpawnPoints.instance.spawnPoints[(p.myPV.Owner.ActorNumber - 1)].position;
+                }
             }
         }
         
