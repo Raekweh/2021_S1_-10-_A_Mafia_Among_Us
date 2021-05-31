@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7475997270941584332}
   - component: {fileID: 4360686529598174913}
   m_Layer: 5
-  m_Name: HorrizontalVentButton
+  m_Name: VentButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
