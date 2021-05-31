@@ -50,7 +50,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5495970b467014d018415734720ff25a, type: 2}
+  - {fileID: 2100000, guid: 66048837d264a4750a5e5e38439e2ae6, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -71,7 +71,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -9093560863947490003, guid: 6ef031effbd564478b3f2ee4029aafe1, type: 3}
+  m_Sprite: {fileID: 3901589478960880362, guid: 6ef031effbd564478b3f2ee4029aafe1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -96,8 +96,8 @@ GameObject:
   - component: {fileID: 2713806644407004699}
   - component: {fileID: 2713806644407004698}
   m_Layer: 6
-  m_Name: Vent
-  m_TagString: Vent
+  m_Name: Interactable
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -157,7 +157,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -9093560863947490003, guid: 6ef031effbd564478b3f2ee4029aafe1, type: 3}
+  m_Sprite: {fileID: 3901589478960880362, guid: 6ef031effbd564478b3f2ee4029aafe1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

@@ -51,6 +51,7 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
     //Networking
     PhotonView myPV;
     [SerializeField] GameObject lightMask;
+
     private void Awake()
     {
         KILL.performed += KillTarget;
@@ -80,7 +81,7 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
         if(myPV.IsMine)
         {
             localPlayer = this;
-            Debug.Log("Player localised");
+            // Debug.Log("Player localised");
         }
         myCamera = transform.GetChild(1).GetComponent<Camera>();
         targets = new List<AU_PlayerController>();
@@ -141,15 +142,16 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
             bodiesFound.Remove(tempBody);
             tempBody.GetComponent<AU_Body>().Report();
         }
-        mousePositionInput = MOUSE.ReadValue<Vector2>();
-        
+        mousePositionInput = MOUSE.ReadValue<Vector2>();        
     }
+
     private void FixedUpdate()
     {
         if (!myPV.IsMine)
             return;
         myRB.velocity = movementInput * movementSpeed;
     }
+
     public void SetColor(Color newColor)
     {
         myColor = newColor;
@@ -158,10 +160,12 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
             myAvatarSprite.color = myColor;
         }
     }
+
     public void SetRole(bool newRole)
     {
         isImposter = newRole;
     }
+    
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
@@ -261,36 +265,35 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
             }
         }
     }
+    
     void Interact(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Performed)
         {
-
+            //Debug.Log("Here");
             RaycastHit hit;
             Ray ray = myCamera.ScreenPointToRay(mousePositionInput);
             if (Physics.Raycast(ray, out hit,interactLayer))
             {
-
+                
                 if (hit.transform.tag == "Interactable")
                 {
-                    if (!hit.transform.GetChild(0).gameObject.activeInHierarchy)
-                    {   
-                        return;
-                    }
-                    AU_Interactable temp = hit.transform.GetComponent<AU_Interactable>();
-                    temp.PlayMiniGame();
-                }
                 
+                    AU_Interactable temp = hit.transform.GetComponent<AU_Interactable>();
+                    temp.PlayMiniGame(); 
+                }
+            
                 if(hit.transform.tag == "Vent")
                 {
-                    Debug.Log("The vent tag is legit");
-                    myAnim.SetBool("Vented",true);
+                    myAnim.SetBool("Vented", true);
                     AU_Interactable temp = hit.transform.GetComponent<AU_Interactable>();
                     temp.PlayMiniGame();
                 }
-                Debug.Log("Here");
+            
             }
-        } 
+           
+        }
+        
     }
 
     public void ExitVent()
