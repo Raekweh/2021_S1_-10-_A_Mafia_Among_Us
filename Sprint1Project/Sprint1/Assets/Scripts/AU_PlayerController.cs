@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+
+using System.Threading;
+
 public class AU_PlayerController : MonoBehaviour
 {
     [SerializeField] bool hasControl;
@@ -108,6 +111,13 @@ public class AU_PlayerController : MonoBehaviour
         if (movementInput.x != 0)
         {
             myAvatar.localScale = new Vector2(Mathf.Sign(movementInput.x), 1);
+            isInspectAni = false;
+            myAnim.SetBool("isInspectAni", isInspectAni);
+        }
+        if (movementInput.y != 0)
+        {
+            isInspectAni = false;
+            myAnim.SetBool("isInspectAni", isInspectAni);
         }
         if (allBodies.Count > 0)
         {
@@ -241,15 +251,32 @@ public class AU_PlayerController : MonoBehaviour
             else
             {
 
-                if (targets[targets.Count - 1].isImposter==false)
+                if (targets[targets.Count - 1].isImposter)
                 {
                     return;
                 }
                 transform.position = targets[targets.Count - 1].transform.position;
-                targets[targets.Count - 1].Inspectyy();
+
+                //Thread worker1 = new Thread(targets[targets.Count - 1].Inspectyy());
+               // Thread worker2 = new Thread(targets[targets.Count - 1].changeInpect());
+
+               // worker1.Start();
+               // worker2.Start();
+
+
+                 targets[targets.Count - 1].Inspectyy();
+               // targets[targets.Count - 1].changeInpect();
                 // targets.RemoveAt(targets.Count - 1);
             }
         }
+    }
+
+    public void changeInpect()
+    {
+        //TimeSpan timeout = new TimeSpan(0, 0, 1);
+        //Thread.Sleep(timeout);
+        isInspectAni = false;
+        myAnim.SetBool("isInspectAni", isInspectAni);
     }
 
 
@@ -259,7 +286,7 @@ public class AU_PlayerController : MonoBehaviour
         isInspectAni = true;
         myAnim.SetBool("isInspectAni", isInspectAni);
         gameObject.layer = 9;
-        myCollider.enabled = true;
+       // myCollider.enabled = true;
     }
 
     //this method will cause the player to revive
