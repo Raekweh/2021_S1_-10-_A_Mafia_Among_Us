@@ -9,7 +9,7 @@ public class MyPhotonPlayer : MonoBehaviour
 {
 
     PhotonView myPV;
-    GameObject myPlayerAvatar;
+    [SerializeField] GameObject myPlayerAvatar;
     Player[] allPlayers;
     int myNumberInRoom;
 

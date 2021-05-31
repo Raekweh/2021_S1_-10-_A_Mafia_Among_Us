@@ -1,12 +1,18 @@
 using Photon.Pun;
+using Photon.Realtime;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class AU_PlayerController : MonoBehaviour, IPunObservable
 {
+    [SerializeField] Text playerName;
+    string username = "";
+
     [SerializeField] bool hasControl;
     public static AU_PlayerController localPlayer;
     
@@ -25,7 +31,7 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
     static Color myColor;
     Vector3 colorVector;
     Color syncColor;
-    [SerializeField] SpriteRenderer myAvatarSprite;
+    SpriteRenderer myAvatarSprite;
 
     //Role
     [SerializeField] bool isImposter;
@@ -53,6 +59,10 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
     //Networking
     PhotonView myPV;
     [SerializeField] GameObject lightMask;
+
+    public static List<AU_PlayerController> playersInGame;
+    public static List<string> playerNames;
+
     private void Awake()
     {
         KILL.performed += KillTarget;
@@ -104,17 +114,27 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
             allBodies = new List<Transform>();
         }
         bodiesFound = new List<Transform>();
+
+        playersInGame = new List<AU_PlayerController>();
+        playerNames = new List<string>();
+
     }
     // Update is called once per frame
     void Update()
     {
-        // Debug.Log(imposterNumberAssigned);
+        if(!playersInGame.Contains(this)){
+            playersInGame.Add(this);
+            username = "Player "+(playersInGame.IndexOf(this)+1);
+            Debug.Log(username);
+        }
+        this.username = "Player "+(playersInGame.IndexOf(this)+1);
+        this.playerName.text = username;
+
+        
         if(!isImposter && imposterNumberAssigned && !imposterAssigned){
             BecomeImposter(imposterNumber);
             imposterAssigned = true;
         }
-        // Debug.Log("this = "+this);
-        // Debug.Log("Is imposter = "+this.isImposter);
 
         myAvatar.localScale = new Vector2(direction, 1);
 
@@ -293,6 +313,7 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
             stream.SendNext(isImposter);
             colorVector = new Vector3(myColor.r, myColor.g, myColor.b);
             stream.SendNext(colorVector);
+            // stream.SendNext(username);
         }
         else
         {
@@ -300,6 +321,7 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
             this.isImposter = (bool)stream.ReceiveNext();
             this.colorVector = (Vector3)stream.ReceiveNext();
             syncColor = new Color(colorVector.x, colorVector.y, colorVector.z, 1.0f);
+            // this.username = (string)stream.ReceiveNext();
         }
     }
 

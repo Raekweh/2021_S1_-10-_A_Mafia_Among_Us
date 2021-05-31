@@ -13,12 +13,16 @@ public class WaitingRoomController : MonoBehaviour
     [SerializeField] GameObject StartButton;
     [SerializeField] Text countDownDisplay;
     [SerializeField] int nextLevel;
+    [SerializeField] InputField usernameField;
+    List<AU_PlayerController> playersInGame;
 
     // Start is called before the first frame update
     void Start()
     {
         myPV = GetComponent<PhotonView>();
         timerToStart = timeToStart;
+
+        playersInGame = AU_PlayerController.playersInGame;
         
     }
 
@@ -26,7 +30,10 @@ public class WaitingRoomController : MonoBehaviour
     void Update()
     {
         StartButton.SetActive(PhotonNetwork.IsMasterClient);
-        
+
+        if(playersInGame==null){
+            playersInGame = AU_PlayerController.playersInGame;
+        }
         
             if(readyToStart)
             {
