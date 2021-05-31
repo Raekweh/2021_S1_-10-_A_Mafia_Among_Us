@@ -13,7 +13,6 @@ public class MyPhotonPlayer : MonoBehaviour
     [SerializeField] GameObject myPlayerAvatar;
     Player[] allPlayers;
     int myNumberInRoom;
-    [SerializeField] Text usernameTextField;
 
     // Start is called before the first frame update
     void Start()
@@ -36,24 +35,7 @@ public class MyPhotonPlayer : MonoBehaviour
         }
 
         PhotonNetwork.LocalPlayer.NickName = "Player " + PhotonNetwork.LocalPlayer.ActorNumber;
-        //usernameTextField.text = PhotonNetwork.LocalPlayer.NickName;
 
-        //myPV.RPC("RPC_SetUsername", RpcTarget.All, PhotonNetwork.LocalPlayer.ActorNumber);
     }
 
-    //[PunRPC]
-    //void RPC_SetUsername(int id)
-    //{
-    //    SetUsername(id);
-    //}
-
-    //public void SetUsername(int id)
-    //{
-    //    if ((myPV != null) && !myPV.IsMine)
-    //    {
-    //        return;
-    //    }
-    //    PhotonNetwork.LocalPlayer.NickName = "Player " + id;
-    //    usernameTextField.text = PhotonNetwork.LocalPlayer.NickName;
-    //}
 }

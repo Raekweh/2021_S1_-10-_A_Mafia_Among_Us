@@ -35,10 +35,7 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
     //Role
     [SerializeField] bool isImposter;
     static int imposterNumber;
-    static bool imposterNumberAssigned;
     static bool imposterAssigned;
-
-    bool spawnPointsSet = false;
 
     [SerializeField] InputAction KILL;
     float killInput;
@@ -95,11 +92,11 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
         {
             localPlayer = this;
             Debug.Log("Player localised");
-            this.playerTextField.text = PhotonNetwork.NickName;
+            playerTextField.text = PhotonNetwork.NickName;
         }
         else
         {
-            this.playerTextField.text = myPV.Owner.NickName;
+            playerTextField.text = myPV.Owner.NickName;
         }
         myCamera = transform.GetChild(1).GetComponent<Camera>();
         targets = new List<AU_PlayerController>();
@@ -145,7 +142,6 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
 
         if (SceneManager.GetActiveScene().buildIndex == 1)
         {
-            this.playerTextField.text = PhotonNetwork.NickName;
             myCamera.enabled = false;
         }
 
@@ -366,7 +362,6 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
 
     public void setImposterNumber(int ImposterNumber){
         imposterNumber = ImposterNumber;
-        imposterNumberAssigned = true;
     }
     
 }

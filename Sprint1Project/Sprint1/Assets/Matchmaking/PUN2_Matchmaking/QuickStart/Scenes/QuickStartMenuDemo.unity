@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.3731193, g: 0.38073996, b: 0.3587269, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -695,7 +695,6 @@ GameObject:
   - component: {fileID: 388810232080506139}
   - component: {fileID: 388810232080506138}
   - component: {fileID: 388810232080506133}
-  - component: {fileID: 388810232080506137}
   m_Layer: 5
   m_Name: MainMenu
   m_TagString: Untagged
@@ -740,19 +739,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &388810232080506137
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 388810232080506132}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a10809c933bc06643a503126021c5e79, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  allColors: []
 --- !u!114 &388810232080506138
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1102,7 +1088,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7340373885582884281, guid: 9ea8b24e184253f4dae2ce4e156e9b05, type: 3}
       propertyPath: roomSize
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8679798622512169409, guid: 9ea8b24e184253f4dae2ce4e156e9b05, type: 3}
       propertyPath: m_IsActive
