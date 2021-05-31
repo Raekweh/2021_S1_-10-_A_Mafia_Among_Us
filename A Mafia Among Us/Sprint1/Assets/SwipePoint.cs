@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class SwipePoint : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private SwipeTask _swipeTask;
+
+    private void Awake()
     {
-        
+        _swipeTask = GetComponentInParent<SwipeTask>();
+
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        
+        _swipeTask.SwipePointTrigger(this);
     }
 }
