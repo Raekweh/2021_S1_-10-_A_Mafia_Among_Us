@@ -163,6 +163,7 @@ public class AU_PlayerController : MonoBehaviour
                 transform.position = targets[targets.Count - 1].transform.position;
                 targets[targets.Count - 1].Die();
                 targets.RemoveAt(targets.Count - 1);
+                SoundManager.PlaySound("KillSound");
             }
         }
     }
@@ -215,5 +216,6 @@ public class AU_PlayerController : MonoBehaviour
         allBodies.Remove(tempBody);
         bodiesFound.Remove(tempBody);
         tempBody.GetComponent<AU_Body>().Report();
+        SoundManager.PlaySound("ReportSound");
     }
 }
