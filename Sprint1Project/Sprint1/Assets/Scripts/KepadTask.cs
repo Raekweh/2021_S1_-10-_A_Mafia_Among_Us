@@ -5,64 +5,66 @@ using UnityEngine.UI;
 
 public class KepadTask : MonoBehaviour
 {
-    public Text _cardCode;
-
-    public Text _inputCode; 
-    
-    public int _codeLength =5;
-    
-    public float _codeResetTimeInSeconds = 0.5f;
-
-    private bool _isResetting = false;
-
+    public Text cardCode;
+    public Text inputCode; 
+    [SerializeField] int codeLength =5;
+    [SerializeField] float codeResetTimeInSeconds = 0.5f;
+    private bool isResetting = false;
     [SerializeField] GameObject GamePanel;
     [SerializeField] GameObject TaskSprite;
     private void OnEnable()
     {
         string code = string.Empty;
 
-        for(int i = 0; i < _codeLength; i++)
+        //Will generate a random set of numbers which will be saved to a string
+        for(int i = 0; i < codeLength; i++)
         {
             code += Random.Range(1, 10);
         }
-
-        _cardCode.text = code;
-        _inputCode.text = string.Empty;
+        
+        //T
+        cardCode.text = code;
+        inputCode.text = string.Empty;
     }
 
+    //When the button is clicked the number will be added to the input code
     public void ButtonClick(int number)
     {
-        if (_isResetting)
+        //When the user fails and will have to reset the input.
+        if (isResetting)
         {
             return;
         }
+        
+        //This will add the number the user's input into the UI text on unity
+        inputCode.text += number;
 
-        _inputCode.text += number;
-
-        if (_inputCode.text == _cardCode.text)
+        //The input code text matches the card code text
+        if (inputCode.text == cardCode.text)
         {
-            _inputCode.text = "Correct";
+            //The input code will tell the user they suceeded
+            inputCode.text = "Correct";
             StartCoroutine(ResetCode());
+
+            //Stops the user from interacting with the object again
             Destroy(GamePanel);
             Destroy(TaskSprite);
-
         }
-        else if(_inputCode.text.Length >= _codeLength)
+        //The input code is not the same as code
+        else if(inputCode.text.Length >= codeLength)
         {
-            _inputCode.text = "Failed";
+            //This will indicate the user they failed
+            inputCode.text = "Failed";
             StartCoroutine(ResetCode());
-
         }
     }
 
+    //Resets the code
     private IEnumerator ResetCode()
     {
-        _isResetting = true;
-
-        yield return new WaitForSeconds(_codeResetTimeInSeconds);
-
-        _inputCode.text = string.Empty;
-        _isResetting = false;
+        isResetting = true;
+        yield return new WaitForSeconds(codeResetTimeInSeconds);
+        inputCode.text = string.Empty;
+        isResetting = false;
     }
-
 }
