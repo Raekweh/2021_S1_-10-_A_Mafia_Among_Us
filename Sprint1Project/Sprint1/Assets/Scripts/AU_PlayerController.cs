@@ -61,7 +61,7 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
 
     public static List<AU_PlayerController> playersInGame;
     public static List<string> playerNames;
-
+    
     private void Awake()
     {
         KILL.performed += KillTarget;
@@ -132,7 +132,6 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
 
         BecomeImposter(imposterNumber);
 
-
         myAvatar.localScale = new Vector2(direction, 1);
 
         if (!myPV.IsMine){
@@ -178,9 +177,9 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
             bodiesFound.Remove(tempBody);
             tempBody.GetComponent<AU_Body>().Report();
         }
-        mousePositionInput = MOUSE.ReadValue<Vector2>();
-        
+        mousePositionInput = MOUSE.ReadValue<Vector2>();        
     }
+
     private void FixedUpdate()
     {
         if (!myPV.IsMine)
@@ -215,7 +214,7 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
                 else
                 {
                     targets.Add(tempTarget);
-                    
+
                 }
             }
         }
@@ -296,30 +295,55 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
                 }
                 else
                 {
-                    
+
                     bodiesFound.Remove(body.transform);
                 }
             }
         }
     }
+    
     void Interact(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Performed)
         {
-            Debug.Log("Here");
+            //Debug.Log("Here");
             RaycastHit hit;
             Ray ray = myCamera.ScreenPointToRay(mousePositionInput);
             if (Physics.Raycast(ray, out hit,interactLayer))
             {
-                if (hit.transform.tag == "Interactable")
+                //If the Object has the tag interactable for task objects and if the player is a villiage
+                if ((hit.transform.tag == "Interactable") && (isImposter == false))
                 {
-                    // AU_Interactable temp = hit.transform.GetComponent<AU_Interactable>();
-                    // temp.PlayMiniGame();
+                    Debug.Log("THe interactable tag works");
+                    AU_Interactable temp = hit.transform.GetComponent<AU_Interactable>();
+                    temp.PlayMiniGame(); 
+                }
+            
+                //If the Object has the tag Vent and if the player is an imposter
+                if((hit.transform.tag == "Vent") && (isImposter == true))
+                {
+                    Debug.Log("THe vent tag works");
+                    myAnim.SetBool("Vented", true);
+                    AU_Interactable temp = hit.transform.GetComponent<AU_Interactable>();
+                    temp.PlayMiniGame();
+                }
+
+                //If the object has the tag Emergency
+                if((hit.transform.tag == "Emergency"))
+                {
+                    Debug.Log("The emergency tag works");
+                    AU_Interactable temp = hit.transform.GetComponent<AU_Interactable>();
+                    temp.PlayMiniGame();
                 }
             }
            
         }
         
+    }
+
+    public void ExitVent()
+    {
+        myAnim.SetBool("Vented", false);
     }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
@@ -354,8 +378,6 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
         {
             
             this.isImposter = true;
-            //Debug.Log("this = "+localPlayer);
-            //Debug.Log("Is imposter ="+isImposter);
 
         }
     }
