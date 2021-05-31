@@ -28,7 +28,7 @@ public class AU_Interactable : MonoBehaviour
     //THis mini game is testing out the timer
     public void PlayMiniGame()
     {
-        
+        Debug.Log("The game has been set active");
         miniGame.SetActive(true);
     }
 }
