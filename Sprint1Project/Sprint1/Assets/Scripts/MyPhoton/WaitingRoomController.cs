@@ -27,17 +27,17 @@ public class WaitingRoomController : MonoBehaviour
     {
         StartButton.SetActive(PhotonNetwork.IsMasterClient);
         
-        
-            if(readyToStart)
-            {
-                timerToStart -= Time.deltaTime;
-                countDownDisplay.text = ((int)timerToStart).ToString();
-            }
-            else
-            {
-                timerToStart = timeToStart;
-                countDownDisplay.text = "";
-            }
+        if(readyToStart)
+        {
+            timerToStart -= Time.deltaTime;
+            countDownDisplay.text = ((int)timerToStart).ToString();
+        }
+        else
+        {
+            timerToStart = timeToStart;
+            countDownDisplay.text = "";
+        }
+
         if (PhotonNetwork.IsMasterClient)
         {
             if (timerToStart <= 0)
@@ -45,6 +45,10 @@ public class WaitingRoomController : MonoBehaviour
                 timerToStart = 100;
                 PhotonNetwork.AutomaticallySyncScene = true;
                 PhotonNetwork.LoadLevel(nextLevel);
+                foreach(AU_PlayerController p in AU_PlayerController.playersInGame)
+                {
+                    p.transform.position = AU_SpawnPoints.instance.spawnPoints[(p.myPV.Owner.ActorNumber - 1)].position;
+                }
             }
         }
         

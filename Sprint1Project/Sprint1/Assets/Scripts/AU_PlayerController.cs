@@ -1,12 +1,17 @@
 using Photon.Pun;
+using Photon.Realtime;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class AU_PlayerController : MonoBehaviour, IPunObservable
 {
+    [SerializeField] Text playerTextField;
+
     [SerializeField] bool hasControl;
     public static AU_PlayerController localPlayer;
     
@@ -23,13 +28,15 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
     float direction = 1;
     //Player Color
     static Color myColor;
+    Vector3 colorVector;
+    Color syncColor;
     SpriteRenderer myAvatarSprite;
 
     //Role
     [SerializeField] bool isImposter;
     static int imposterNumber;
-    static bool imposterNumberAssigned;
     static bool imposterAssigned;
+
     [SerializeField] InputAction KILL;
     float killInput;
     List<AU_PlayerController> targets;
@@ -49,9 +56,12 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
     [SerializeField] LayerMask interactLayer;
     
     //Networking
-    PhotonView myPV;
+    public PhotonView myPV;
     [SerializeField] GameObject lightMask;
 
+    public static List<AU_PlayerController> playersInGame;
+    public static List<string> playerNames;
+    
     private void Awake()
     {
         KILL.performed += KillTarget;
@@ -81,7 +91,12 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
         if(myPV.IsMine)
         {
             localPlayer = this;
-            // Debug.Log("Player localised");
+            Debug.Log("Player localised");
+            playerTextField.text = PhotonNetwork.NickName;
+        }
+        else
+        {
+            playerTextField.text = myPV.Owner.NickName;
         }
         myCamera = transform.GetChild(1).GetComponent<Camera>();
         targets = new List<AU_PlayerController>();
@@ -103,22 +118,42 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
             allBodies = new List<Transform>();
         }
         bodiesFound = new List<Transform>();
+
+        playersInGame = new List<AU_PlayerController>();
+        playerNames = new List<string>();
+
     }
     // Update is called once per frame
     void Update()
     {
-        // Debug.Log(imposterNumberAssigned);
-        if(!isImposter && imposterNumberAssigned && !imposterAssigned){
-            BecomeImposter(imposterNumber);
-            imposterAssigned = true;
+        if(!playersInGame.Contains(this)){
+            playersInGame.Add(this);
         }
-        // Debug.Log("this = "+this);
-        // Debug.Log("Is imposter = "+this.isImposter);
+
+        BecomeImposter(imposterNumber);
 
         myAvatar.localScale = new Vector2(direction, 1);
 
-        if (!myPV.IsMine)
+        if (!myPV.IsMine){
+            myAvatarSprite.color = syncColor;
             return;
+        }
+
+        if (SceneManager.GetActiveScene().buildIndex == 1)
+        {
+            myCamera.enabled = false;
+        }
+
+        if (SceneManager.GetActiveScene().buildIndex == 2)
+        {
+            
+            if (myPV.IsMine)
+            {
+                this.myCamera.enabled = true;
+            }
+            
+            
+        }
 
         movementInput = WASD.ReadValue<Vector2>();
         myAnim.SetFloat("Speed", movementInput.magnitude);
@@ -126,13 +161,13 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
         if (movementInput.x != 0)
         {
             direction = Mathf.Sign(movementInput.x);
-            
         }
         
         if(allBodies.Count > 0)
         {
             BodySearch();
         }
+
         if(REPORT.triggered)
         {
             if (bodiesFound.Count == 0)
@@ -161,11 +196,12 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
         }
     }
 
+
     public void SetRole(bool newRole)
     {
         isImposter = newRole;
     }
-    
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
@@ -316,29 +352,38 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
         {
             stream.SendNext(direction);
             stream.SendNext(isImposter);
+            colorVector = new Vector3(myColor.r, myColor.g, myColor.b);
+            stream.SendNext(colorVector);
         }
         else
         {
             this.direction = (float)stream.ReceiveNext();
             this.isImposter = (bool)stream.ReceiveNext();
+            this.colorVector = (Vector3)stream.ReceiveNext();
+            syncColor = new Color(colorVector.x, colorVector.y, colorVector.z, 1.0f);
         }
     }
 
     public void BecomeImposter(int ImposterNumber)
     {
-        if(PhotonNetwork.LocalPlayer == PhotonNetwork.PlayerList[ImposterNumber])
+        imposterAssigned = false;
+        foreach(AU_PlayerController p in playersInGame)
+        {
+            if (p.isImposter)
+            {
+                imposterAssigned = true;
+            }
+        }
+        if(!imposterAssigned && (PhotonNetwork.LocalPlayer == PhotonNetwork.PlayerList[ImposterNumber]))
         {
             
             this.isImposter = true;
-            // Debug.Log("this = "+localPlayer);
-            // Debug.Log("Is imposter ="+isImposter);
 
         }
     }
 
     public void setImposterNumber(int ImposterNumber){
         imposterNumber = ImposterNumber;
-        imposterNumberAssigned = true;
     }
     
 }

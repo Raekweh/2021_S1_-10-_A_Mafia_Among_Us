@@ -3,13 +3,14 @@ using Photon.Realtime;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using UnityEngine.UI;
 using UnityEngine;
 
 public class MyPhotonPlayer : MonoBehaviour
 {
 
     PhotonView myPV;
-    GameObject myPlayerAvatar;
+    [SerializeField] GameObject myPlayerAvatar;
     Player[] allPlayers;
     int myNumberInRoom;
 
@@ -21,6 +22,7 @@ public class MyPhotonPlayer : MonoBehaviour
 
         foreach(Player p in allPlayers)
         {
+            Debug.Log("Player = "+p);
             if(p!= PhotonNetwork.LocalPlayer)
             {
                 myNumberInRoom++;
@@ -31,5 +33,9 @@ public class MyPhotonPlayer : MonoBehaviour
         {
             myPlayerAvatar = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "AU_Player"), AU_SpawnPoints.instance.spawnPoints[myNumberInRoom].position, Quaternion.identity);
         }
+
+        PhotonNetwork.LocalPlayer.NickName = "Player " + PhotonNetwork.LocalPlayer.ActorNumber;
+
     }
+
 }
