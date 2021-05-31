@@ -3,9 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-
-using System.Threading;
-
 public class AU_PlayerController : MonoBehaviour
 {
     [SerializeField] bool hasControl;
@@ -257,30 +254,13 @@ public class AU_PlayerController : MonoBehaviour
                 }
                 transform.position = targets[targets.Count - 1].transform.position;
 
-                //Thread worker1 = new Thread(targets[targets.Count - 1].Inspectyy());
-               // Thread worker2 = new Thread(targets[targets.Count - 1].changeInpect());
-
-               // worker1.Start();
-               // worker2.Start();
-
-
                  targets[targets.Count - 1].Inspectyy();
-               // targets[targets.Count - 1].changeInpect();
-                // targets.RemoveAt(targets.Count - 1);
+               
             }
         }
     }
 
-    public void changeInpect()
-    {
-        //TimeSpan timeout = new TimeSpan(0, 0, 1);
-        //Thread.Sleep(timeout);
-        isInspectAni = false;
-        myAnim.SetBool("isInspectAni", isInspectAni);
-    }
-
-
-    //this method will cause the player to revive
+    //this method will inspect the player to see if they are the mafia
     public void Inspectyy()
     {
         isInspectAni = true;
