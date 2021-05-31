@@ -278,13 +278,14 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
                 
                 if (hit.transform.tag == "Interactable")
                 {
-                
+                    Debug.Log("THe interactable tag works");
                     AU_Interactable temp = hit.transform.GetComponent<AU_Interactable>();
                     temp.PlayMiniGame(); 
                 }
             
                 if(hit.transform.tag == "Vent")
                 {
+                    Debug.Log("THe vent tag works");
                     myAnim.SetBool("Vented", true);
                     AU_Interactable temp = hit.transform.GetComponent<AU_Interactable>();
                     temp.PlayMiniGame();
