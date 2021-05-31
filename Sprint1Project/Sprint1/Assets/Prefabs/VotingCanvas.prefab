@@ -2889,12 +2889,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 969491556268714155}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25f175b26f32e48af95d416de81f123c, type: 3}
+  m_Script: {fileID: 11500000, guid: 2bdfff56bcdcc4385a71cc370dfef7af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeLimit: 5
+  TimeLimit: 10
   countdownDisplay: {fileID: 969491556429287403}
-  VotingCanvas: {fileID: 0}
+  VotingCanvas: {fileID: 969491556268714155}
 --- !u!1 &969491556429287401
 GameObject:
   m_ObjectHideFlags: 0
@@ -3039,7 +3039,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 5147965828529997187, guid: 5ddcb6f7136c34ff9912fd9e9ea8e2ca, type: 3}
+  m_Sprite: {fileID: 5147965828529997187, guid: 4bb872343ebc64883988de6d9b73c584, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
