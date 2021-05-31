@@ -15,6 +15,7 @@ public class Wire : MonoBehaviour
 
     private void OnMouseDrag()
     {
+        // Debug.Log("Dragging");
         //Mouse position to world point
         Vector3 newPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         newPosition.z = 0;
@@ -22,14 +23,14 @@ public class Wire : MonoBehaviour
         //update wire
          transform.position = newPosition;
 
-        // //update direction
+        // // //update direction
         
-        // original Vector3 direction = newPosition - startPoint; FIX THIS ! ! ! ! ! 
-         Vector3 direction = newPosition - startPoint ;
-         transform.right = direction * transform.lossyScale.x; // ??????????
+        // // original Vector3 direction = newPosition - startPoint; FIX THIS ! ! ! ! ! 
+        //  Vector3 direction = newPosition - startPoint ;
+        //  transform.right = direction * transform.lossyScale.x; // ??????????
 
-        // //update scale
-        float dist = Vector2.Distance(startPoint, newPosition);
-        wireEnd.size = new Vector2(dist, wireEnd.size.y);
+        // // //update scale
+        // float dist = Vector2.Distance(startPoint, newPosition);
+        // wireEnd.size = new Vector2(dist, wireEnd.size.y);
     }
 } 
