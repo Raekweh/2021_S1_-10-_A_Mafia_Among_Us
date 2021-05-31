@@ -14,7 +14,7 @@ public class Switch : MonoBehaviour
 
         if (isOn)
         {
-            // Main.Instance.SwitchChange(1);
+            Main.Instance.SwitchChange(1);
         }
         
     }
@@ -29,11 +29,11 @@ public class Switch : MonoBehaviour
 
         if (isOn)
         {
-            // Main.Instance.SwitchChange(1);
+            Main.Instance.SwitchChange(1);
         }
         else
         {
-            // Main.Instance.SwitchChange(-1);
+            Main.Instance.SwitchChange(-1);
         }
     }
 
