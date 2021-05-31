@@ -275,7 +275,7 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
             Ray ray = myCamera.ScreenPointToRay(mousePositionInput);
             if (Physics.Raycast(ray, out hit,interactLayer))
             {
-                //If the Object has the tag interactable for task objects
+                //If the Object has the tag interactable for task objects and if the player is a villiage
                 if ((hit.transform.tag == "Interactable") && (isImposter == false))
                 {
                     Debug.Log("THe interactable tag works");
@@ -291,7 +291,14 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
                     AU_Interactable temp = hit.transform.GetComponent<AU_Interactable>();
                     temp.PlayMiniGame();
                 }
-            
+
+                //If the object has the tag Emergency
+                if((hit.transform.tag == "Emergency"))
+                {
+                    Debug.Log("The emergency tag works");
+                    AU_Interactable temp = hit.transform.GetComponent<AU_Interactable>();
+                    temp.PlayMiniGame();
+                }
             }
            
         }

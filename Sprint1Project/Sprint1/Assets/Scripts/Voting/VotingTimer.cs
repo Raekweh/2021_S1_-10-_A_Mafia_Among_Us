@@ -16,6 +16,7 @@ public class VotingTimer : MonoBehaviour
 
     [SerializeField]GameObject VotingCanvas;
 
+
     void Awake()
     {
         TimeLimit = 10;
