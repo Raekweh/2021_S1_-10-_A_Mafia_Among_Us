@@ -1428,7 +1428,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1471508773661981113}
-        m_TargetAssemblyTypeName: KepadTask, Assembly-CSharp
+        m_TargetAssemblyTypeName: KepadTask, Scripts
         m_MethodName: ButtonClick
         m_Mode: 3
         m_Arguments:

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Interactable
   - Vent
+  - DeadInteractable
   layers:
   - Default
   - TransparentFX

@@ -15,6 +15,8 @@ public class KepadTask : MonoBehaviour
 
     private bool _isResetting = false;
 
+    [SerializeField] GameObject GamePanel;
+    [SerializeField] GameObject TaskSprite;
     private void OnEnable()
     {
         string code = string.Empty;
@@ -41,6 +43,9 @@ public class KepadTask : MonoBehaviour
         {
             _inputCode.text = "Correct";
             StartCoroutine(ResetCode());
+            Destroy(GamePanel);
+            Destroy(TaskSprite);
+
         }
         else if(_inputCode.text.Length >= _codeLength)
         {
