@@ -14,6 +14,7 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
     Rigidbody myRB;
     Animator myAnim;
     Transform myAvatar;
+    int keyy = 2;
 
     //Player movement
     [SerializeField] InputAction WASD;
@@ -28,10 +29,13 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
     [SerializeField] SpriteRenderer myAvatarSprite;
 
     //Role
+    [SerializeField] bool isAngel;
+    [SerializeField] InputAction REVIVE;
+    float reviveInput;
     [SerializeField] bool isImposter;
     static int imposterNumber;
-    static bool imposterNumberAssigned;
-    static bool imposterAssigned;
+    static bool imposterNumberAssigned;////////////////////////////////////////////////////////////
+    static bool imposterAssigned;   ///////////////////////////
     [SerializeField] InputAction KILL;
     float killInput;
     List<AU_PlayerController> targets;
@@ -57,6 +61,7 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
     {
         KILL.performed += KillTarget;
         INTERACTION.performed += Interact;
+        REVIVE.performed += ReviveTarget;
     }
     private void OnEnable()
     {
@@ -65,6 +70,7 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
         REPORT.Enable();
         MOUSE.Enable();
         INTERACTION.Enable();
+        REVIVE.Enable();
     }
     private void OnDisable()
     {
@@ -73,6 +79,7 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
         REPORT.Disable();
         MOUSE.Disable();
         INTERACTION.Disable();
+        REVIVE.Disable();
     }
     // Start is called before the first frame update
     void Start()
@@ -165,6 +172,7 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
     public void SetRole(bool newRole)
     {
         isImposter = newRole;
+        isAngel = newRole;
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -173,6 +181,7 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
             AU_PlayerController tempTarget = other.GetComponent<AU_PlayerController>();
             if (isImposter)
             {
+                keyy = 3;
                 if (tempTarget.isImposter)
                     return;
                 else
@@ -180,6 +189,17 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
                     targets.Add(tempTarget);
                     
                 }
+            }
+            if (isAngel)
+            {
+                keyy = 4;
+               // if (tempTarget.isDead != false)
+               //     return;
+               // else
+               // {
+                    targets.Add(tempTarget);
+
+                //}
             }
         }
     }
@@ -214,7 +234,44 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
                     return;
                 transform.position = targets[targets.Count - 1].transform.position;
                 // targets[targets.Count - 1].Die();
+                targets[targets.Count - 1].setty(keyy);
                 targets[targets.Count - 1].myPV.RPC("RPC_Kill", RpcTarget.All);
+                targets.RemoveAt(targets.Count - 1);
+            }
+        }
+    }
+
+    public void setty(int key)
+    {
+        this.keyy= key;
+    }
+
+    //This method will Revive the last player to enter the Angels kill radius
+    private void ReviveTarget(InputAction.CallbackContext context)
+    {
+        keyy = 4;
+        if (!myPV.IsMine)
+        {
+            return;
+        }
+        if (!isAngel)
+        {
+            return;
+        }
+
+        if (context.phase == InputActionPhase.Performed)
+        {
+            if (targets.Count == 0)
+                return;
+            else
+            {
+                if (targets[targets.Count - 1].isDead)
+                    return;
+                transform.position = targets[targets.Count - 1].transform.position;
+                // targets[targets.Count - 1].Die();
+                targets[targets.Count - 1].setty(keyy);
+                targets[targets.Count - 1].myPV.RPC("RPC_Kill", RpcTarget.All);
+
                 targets.RemoveAt(targets.Count - 1);
             }
         }
@@ -223,7 +280,39 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
     [PunRPC]
     void RPC_Kill()
     {
+        if (keyy == 4)
+        {
+            Revivve();
+        }
+        else
+        {
+            Die();
+        }
+        
+
+    }
+
+    [PunRPC]
+    void RPC_Revive()
+    {
+       // Revivve();
         Die();
+    }
+
+    public void Revivve()
+    {
+
+        if (!myPV.IsMine)
+        {
+            return;
+        }
+        AU_Body tempBody = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "AU_Body"), transform.position, transform.rotation).GetComponent<AU_Body>();
+        tempBody.SetColor(myAvatarSprite.color);
+        isDead = false;
+        myAnim.SetBool("IsDead", isDead);
+        gameObject.layer = 9;
+        myCollider.enabled = false;
+
     }
 
     public void Die()
@@ -232,12 +321,14 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
         {
             return;
         }
+        isDead = false;
         AU_Body tempBody = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "AU_Body"), transform.position, transform.rotation).GetComponent<AU_Body>();
         tempBody.SetColor(myAvatarSprite.color);
-        isDead = true;
+       // isDead = false;
         myAnim.SetBool("IsDead", isDead);
         gameObject.layer = 9;
         myCollider.enabled = false;
+
     }
     void BodySearch()
     {
