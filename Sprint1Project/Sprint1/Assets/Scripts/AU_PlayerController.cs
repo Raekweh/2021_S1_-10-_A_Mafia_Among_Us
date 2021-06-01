@@ -270,7 +270,7 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
                 transform.position = targets[targets.Count - 1].transform.position;
                 // targets[targets.Count - 1].Die();
                 targets[targets.Count - 1].setty(keyy);
-                targets[targets.Count - 1].myPV.RPC("RPC_Kill", RpcTarget.All);
+                targets[targets.Count - 1].myPV.RPC("RPC_Revive", RpcTarget.All);
 
                 targets.RemoveAt(targets.Count - 1);
             }
@@ -280,14 +280,7 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
     [PunRPC]
     void RPC_Kill()
     {
-        if (keyy == 4)
-        {
-            Revivve();
-        }
-        else
-        {
             Die();
-        }
         
 
     }
@@ -295,8 +288,8 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
     [PunRPC]
     void RPC_Revive()
     {
-       // Revivve();
-        Die();
+        Revivve();
+       // Die();
     }
 
     public void Revivve()
@@ -321,10 +314,10 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
         {
             return;
         }
-        isDead = false;
+        
         AU_Body tempBody = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "AU_Body"), transform.position, transform.rotation).GetComponent<AU_Body>();
         tempBody.SetColor(myAvatarSprite.color);
-       // isDead = false;
+        isDead = true;
         myAnim.SetBool("IsDead", isDead);
         gameObject.layer = 9;
         myCollider.enabled = false;
