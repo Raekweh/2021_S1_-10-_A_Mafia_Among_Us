@@ -564,6 +564,7 @@ MonoBehaviour:
   interactLayer:
     serializedVersion: 2
     m_Bits: 64
+  myPV: {fileID: 0}
   lightMask: {fileID: 472144661}
 --- !u!54 &6188980616498085204
 Rigidbody:

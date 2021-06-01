@@ -126,7 +126,7 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
     // Update is called once per frame
     void Update()
     {
-        if(!playersInGame.Contains(this)){
+        if((playersInGame!=null && this !=null) && !playersInGame.Contains(this)){
             playersInGame.Add(this);
         }
 
@@ -213,7 +213,10 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
                     return;
                 else
                 {
-                    targets.Add(tempTarget);
+                    if(targets!=null){
+                        targets.Add(tempTarget);
+                    }
+                    
 
                 }
             }
@@ -367,13 +370,16 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
     public void BecomeImposter(int ImposterNumber)
     {
         imposterAssigned = false;
-        foreach(AU_PlayerController p in playersInGame)
-        {
-            if (p.isImposter)
+        if(playersInGame!=null){
+            foreach(AU_PlayerController p in playersInGame)
             {
-                imposterAssigned = true;
+                if (p.isImposter)
+                {
+                    imposterAssigned = true;
+                }
             }
         }
+            
         if(!imposterAssigned && (PhotonNetwork.LocalPlayer == PhotonNetwork.PlayerList[ImposterNumber]))
         {
             
