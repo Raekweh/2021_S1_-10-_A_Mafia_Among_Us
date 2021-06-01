@@ -10,10 +10,12 @@ using UnityEngine.SceneManagement;
 
 public class AU_PlayerController : MonoBehaviour, IPunObservable
 {
-    [SerializeField] Text playerTextField;
+    [SerializeField] public Text playerTextField;
 
     [SerializeField] bool hasControl;
     public static AU_PlayerController localPlayer;
+
+    public int tasksCompleted = 0;
     
     //Components
     Rigidbody myRB;
@@ -130,7 +132,21 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
             playersInGame.Add(this);
         }
 
+        Debug.Log("Tasks done = "+tasksCompleted);
+
         BecomeImposter(imposterNumber);
+
+        if(checkCrewmateVictory()){
+            Debug.Log("Crewmates Win!");
+            PhotonNetwork.AutomaticallySyncScene = true;
+            PhotonNetwork.LoadLevel(3);
+        }
+
+        if(checkMafiaVictory()){
+            Debug.Log("Mafia Wins!");
+            PhotonNetwork.AutomaticallySyncScene = true;
+            PhotonNetwork.LoadLevel(4);
+        }
 
         myAvatar.localScale = new Vector2(direction, 1);
 
@@ -326,7 +342,6 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
                 if((hit.transform.tag == "Vent") && (isImposter == true))
                 {
                     Debug.Log("THe vent tag works");
-                    myAnim.SetBool("Vented", true);
                     AU_Interactable temp = hit.transform.GetComponent<AU_Interactable>();
                     temp.PlayMiniGame();
                 }
@@ -342,11 +357,6 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
            
         }
         
-    }
-
-    public void ExitVent()
-    {
-        myAnim.SetBool("Vented", false);
     }
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
@@ -390,6 +400,38 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
 
     public void setImposterNumber(int ImposterNumber){
         imposterNumber = ImposterNumber;
+    }
+
+    bool checkCrewmateVictory(){
+        bool nonImposterExists = false;
+        foreach(AU_PlayerController p in playersInGame){
+            if(!p.isImposter){
+                nonImposterExists = true;
+                if(p.tasksCompleted!=2){
+                    return false;
+                }
+            }
+        }
+        if(nonImposterExists){
+            return true;
+        }
+        return false;
+    }
+
+    bool checkMafiaVictory(){
+        bool nonImposterExists = false;
+        foreach(AU_PlayerController p in playersInGame){
+            if(!p.isImposter){
+                nonImposterExists = true;
+                if(!p.isDead){
+                    return false;
+                }
+            }
+        }
+        if(nonImposterExists){
+            return true;
+        }
+        return false;
     }
     
 }

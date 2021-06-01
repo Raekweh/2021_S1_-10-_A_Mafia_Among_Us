@@ -18,6 +18,5 @@ public class AU_Vents : MonoBehaviour
     {
         Debug.Log("Exiting Vent");
         currentPanel.SetActive(false);
-        AU_PlayerController.localPlayer.ExitVent();
     }
 }

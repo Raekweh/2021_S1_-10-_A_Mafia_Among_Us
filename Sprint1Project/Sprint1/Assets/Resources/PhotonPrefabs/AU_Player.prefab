@@ -442,6 +442,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerTextField: {fileID: 8869479580003122043}
   hasControl: 1
+  tasksCompleted: 0
   WASD:
     m_Name: WASD
     m_Type: 0

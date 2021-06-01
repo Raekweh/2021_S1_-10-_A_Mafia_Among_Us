@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Photon.Pun;
 
 public class KepadTask : MonoBehaviour
 {
@@ -12,8 +13,16 @@ public class KepadTask : MonoBehaviour
     private bool isResetting = false;
     [SerializeField] GameObject GamePanel;
     [SerializeField] GameObject TaskSprite;
+    PhotonView myPV;
+
+    void Start(){
+        myPV = GetComponent<PhotonView>();
+        Debug.Log("Keypad task is owned by "+myPV.Owner.NickName);
+    }
+    
     private void OnEnable()
     {
+
         string code = string.Empty;
 
         //Will generate a random set of numbers which will be saved to a string
@@ -45,6 +54,12 @@ public class KepadTask : MonoBehaviour
             //The input code will tell the user they suceeded
             inputCode.text = "Correct";
             StartCoroutine(ResetCode());
+
+            foreach(AU_PlayerController p in AU_PlayerController.playersInGame){
+                if (p.playerTextField.text == myPV.Owner.NickName){
+                    p.tasksCompleted++;
+                }
+            }
 
             //Stops the user from interacting with the object again
             Destroy(GamePanel);

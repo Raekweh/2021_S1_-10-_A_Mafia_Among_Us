@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class ReactorTaskGame : MonoBehaviour
 {
@@ -9,10 +10,12 @@ public class ReactorTaskGame : MonoBehaviour
     [SerializeField] GameObject[] myObjects;
     [SerializeField] GameObject RecactorTask;
     [SerializeField] GameObject ReactorSprite;
+    PhotonView myPV;
 
 
     void Start()
     {
+        myPV = GetComponent<PhotonView>();
         nextButton = 1;
     }
 
@@ -33,6 +36,11 @@ public class ReactorTaskGame : MonoBehaviour
             Debug.Log("Pass");
             nextButton = 0;
             ButtonOrderPanelClose();
+            foreach(AU_PlayerController p in AU_PlayerController.playersInGame){
+                if (p.playerTextField.text == myPV.Owner.NickName){
+                    p.tasksCompleted++;
+                }
+            }
             Destroy(RecactorTask);
             Destroy(ReactorSprite);
         }
