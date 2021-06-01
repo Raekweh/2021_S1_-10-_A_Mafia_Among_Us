@@ -7,6 +7,8 @@ public class ReactorTaskGame : MonoBehaviour
     [SerializeField] int nextButton;
     [SerializeField] GameObject GamePanel;
     [SerializeField] GameObject[] myObjects;
+    [SerializeField] GameObject RecactorTask;
+    [SerializeField] GameObject ReactorSprite;
 
 
     void Start()
@@ -31,6 +33,8 @@ public class ReactorTaskGame : MonoBehaviour
             Debug.Log("Pass");
             nextButton = 0;
             ButtonOrderPanelClose();
+            Destroy(RecactorTask);
+            Destroy(ReactorSprite);
         }
         else if (button == nextButton)
         {

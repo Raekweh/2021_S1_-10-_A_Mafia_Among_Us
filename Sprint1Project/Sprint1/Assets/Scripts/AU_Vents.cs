@@ -9,12 +9,14 @@ public class AU_Vents : MonoBehaviour
     [SerializeField] Transform NewPosition;
     public void ChangeVent()
     {
+        Debug.Log("Changing vent");
         currentPanel.SetActive(false);
         nextPanel.SetActive(true);
         AU_PlayerController.localPlayer.transform.position = NewPosition.position;
     }
     public void ExitVent()
     {
+        Debug.Log("Exiting Vent");
         currentPanel.SetActive(false);
         AU_PlayerController.localPlayer.ExitVent();
     }

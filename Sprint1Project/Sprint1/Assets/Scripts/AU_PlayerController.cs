@@ -315,7 +315,7 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
             if (Physics.Raycast(ray, out hit,interactLayer))
             {
                 //If the Object has the tag interactable for task objects and if the player is a villiage
-                if ((hit.transform.tag == "Interactable") && (isImposter == false))
+                if ((hit.transform.tag == "Interactable"))
                 {
                     Debug.Log("THe interactable tag works");
                     AU_Interactable temp = hit.transform.GetComponent<AU_Interactable>();
