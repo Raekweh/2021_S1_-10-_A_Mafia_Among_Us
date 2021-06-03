@@ -306,7 +306,7 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
             else
             {
 
-                if (targets[targets.Count - 1].isImposter)
+                if (targets[targets.Count - 1].isImposter!=false)
                 {
                     return;
                 }
