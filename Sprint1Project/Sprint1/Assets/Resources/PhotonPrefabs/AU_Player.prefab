@@ -510,6 +510,23 @@ MonoBehaviour:
       m_Action: REVIVE
       m_Flags: 0
   isImposter: 0
+  isInspector: 0
+  INSPECTT:
+    m_Name: INSPECTT
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: d08354a9-7e64-43dc-b1cc-2048c2bf0082
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 811889d0-c38b-45d6-b3e6-84238b226b83
+      m_Path: <Keyboard>/i
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: INSPECTT
+      m_Flags: 0
   KILL:
     m_Name: KILL
     m_Type: 0
@@ -689,6 +706,9 @@ MonoBehaviour:
   - Type: 4
     SynchronizeType: 1
     Name: IsDead
+  - Type: 4
+    SynchronizeType: 0
+    Name: isInspectAni
   m_SynchronizeLayers:
   - SynchronizeType: 0
     LayerIndex: 0
@@ -846,7 +866,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 3402189841344244264, guid: 71cdaa250f46a6e4c9f0de11f2352e72, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8a9bb39c99d418a40a22aad3547c01fb, type: 3}
   m_Color: {r: 1, g: 0.000000093380606, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
