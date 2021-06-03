@@ -35,6 +35,9 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
     SpriteRenderer myAvatarSprite;
 
     //Role
+    [SerializeField] bool isAngel;
+    [SerializeField] InputAction REVIVE;
+    float reviveInput;
     [SerializeField] bool isImposter;
     static int imposterNumber;
     static bool imposterAssigned;
@@ -68,6 +71,7 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
     {
         KILL.performed += KillTarget;
         INTERACTION.performed += Interact;
+        REVIVE.performed += ReviveTarget;
     }
     private void OnEnable()
     {
@@ -76,6 +80,7 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
         REPORT.Enable();
         MOUSE.Enable();
         INTERACTION.Enable();
+        REVIVE.Enable();
     }
     private void OnDisable()
     {
@@ -84,6 +89,7 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
         REPORT.Disable();
         MOUSE.Disable();
         INTERACTION.Disable();
+        REVIVE.Disable();
     }
     // Start is called before the first frame update
     void Start()
@@ -236,6 +242,17 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
 
                 }
             }
+            if (isAngel)
+            {
+
+                // if (tempTarget.isDead != false)
+                //     return;
+                // else
+                // {
+                targets.Add(tempTarget);
+
+                //}
+            }
         }
     }
     private void OnTriggerExit(Collider other)
@@ -249,6 +266,37 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
             }
         }
     }
+
+    private void ReviveTarget(InputAction.CallbackContext context)
+    {
+
+        if (!myPV.IsMine)
+        {
+            return;
+        }
+        if (!isAngel)
+        {
+            return;
+        }
+
+        if (context.phase == InputActionPhase.Performed)
+        {
+            if (targets.Count == 0)
+                return;
+            else
+            {
+                if (targets[targets.Count - 1].isDead)
+                    return;
+                transform.position = targets[targets.Count - 1].transform.position;
+                // targets[targets.Count - 1].Die();
+
+                targets[targets.Count - 1].myPV.RPC("RPC_Revive", RpcTarget.All);
+
+                targets.RemoveAt(targets.Count - 1);
+            }
+        }
+    }
+
     void KillTarget(InputAction.CallbackContext context)
     {
 
@@ -276,9 +324,32 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
     }
 
     [PunRPC]
+    void RPC_Revive()
+    {
+        Revivve();
+        // Die();
+    }
+
+    [PunRPC]
     void RPC_Kill()
     {
         Die();
+    }
+
+    public void Revivve()
+    {
+
+        if (!myPV.IsMine)
+        {
+            return;
+        }
+        //AU_Body tempBody = PhotonNetwork.Instantiate(Path.Combine("PhotonPrefabs", "AU_Body"), transform.position, transform.rotation).GetComponent<AU_Body>();
+        // tempBody.SetColor(myAvatarSprite.color);
+        isDead = false;
+        myAnim.SetBool("IsDead", isDead);
+        gameObject.layer = 9;
+        myCollider.enabled = false;
+
     }
 
     public void Die()

@@ -492,6 +492,23 @@ MonoBehaviour:
       m_Action: WASD
       m_Flags: 8
   movementSpeed: 5
+  isAngel: 0
+  REVIVE:
+    m_Name: REVIVE
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: e35a02d9-d9e8-4108-81b6-6363646c913d
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 4198b975-0afd-4e57-8e5b-ecb7aa6d9b71
+      m_Path: <Keyboard>/p
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: REVIVE
+      m_Flags: 0
   isImposter: 0
   KILL:
     m_Name: KILL
@@ -672,9 +689,6 @@ MonoBehaviour:
   - Type: 4
     SynchronizeType: 1
     Name: IsDead
-  - Type: 4
-    SynchronizeType: 1
-    Name: Vented
   m_SynchronizeLayers:
   - SynchronizeType: 0
     LayerIndex: 0
