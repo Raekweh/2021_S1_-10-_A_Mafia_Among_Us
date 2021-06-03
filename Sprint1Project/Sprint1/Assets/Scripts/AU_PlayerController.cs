@@ -310,7 +310,7 @@ public class AU_PlayerController : MonoBehaviour, IPunObservable
                 {
                     return;
                 }
-                transform.position = targets[targets.Count - 1].transform.position;
+               // transform.position = targets[targets.Count - 1].transform.position;
 
                 //Thread worker1 = new Thread(targets[targets.Count - 1].Inspectyy());
                 // Thread worker2 = new Thread(targets[targets.Count - 1].changeInpect());
